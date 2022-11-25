@@ -22,7 +22,7 @@ namespace Lagerverwaltung
             mainmenu mainmenu = new mainmenu();
             mainmenu.Show();
             this.Hide();
-            Console.WriteLine();
+            
             
         }
     }
