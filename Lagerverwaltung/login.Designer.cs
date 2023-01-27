@@ -40,31 +40,31 @@
             // lbl_username
             // 
             this.lbl_username.AutoSize = true;
-            this.lbl_username.Location = new System.Drawing.Point(51, 119);
+            this.lbl_username.Location = new System.Drawing.Point(38, 112);
             this.lbl_username.Name = "lbl_username";
-            this.lbl_username.Size = new System.Drawing.Size(75, 13);
+            this.lbl_username.Size = new System.Drawing.Size(78, 13);
             this.lbl_username.TabIndex = 0;
-            this.lbl_username.Text = "Benutzername";
+            this.lbl_username.Text = "Benutzername:";
             // 
             // lbl_password
             // 
             this.lbl_password.AutoSize = true;
-            this.lbl_password.Location = new System.Drawing.Point(51, 164);
+            this.lbl_password.Location = new System.Drawing.Point(38, 146);
             this.lbl_password.Name = "lbl_password";
-            this.lbl_password.Size = new System.Drawing.Size(50, 13);
+            this.lbl_password.Size = new System.Drawing.Size(53, 13);
             this.lbl_password.TabIndex = 1;
-            this.lbl_password.Text = "Passwort";
+            this.lbl_password.Text = "Passwort:";
             // 
             // txtB_username
             // 
-            this.txtB_username.Location = new System.Drawing.Point(217, 112);
+            this.txtB_username.Location = new System.Drawing.Point(163, 112);
             this.txtB_username.Name = "txtB_username";
             this.txtB_username.Size = new System.Drawing.Size(100, 20);
             this.txtB_username.TabIndex = 2;
             // 
             // txtB_password
             // 
-            this.txtB_password.Location = new System.Drawing.Point(217, 164);
+            this.txtB_password.Location = new System.Drawing.Point(163, 143);
             this.txtB_password.Name = "txtB_password";
             this.txtB_password.PasswordChar = '*';
             this.txtB_password.Size = new System.Drawing.Size(100, 20);
@@ -73,25 +73,26 @@
             // lbl_headline
             // 
             this.lbl_headline.AutoSize = true;
-            this.lbl_headline.Location = new System.Drawing.Point(127, 22);
+            this.lbl_headline.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_headline.Location = new System.Drawing.Point(94, 25);
             this.lbl_headline.Name = "lbl_headline";
-            this.lbl_headline.Size = new System.Drawing.Size(86, 13);
+            this.lbl_headline.Size = new System.Drawing.Size(115, 18);
             this.lbl_headline.TabIndex = 4;
             this.lbl_headline.Text = "Lagerverwaltung";
             // 
             // bttn_accept
             // 
-            this.bttn_accept.Location = new System.Drawing.Point(36, 289);
+            this.bttn_accept.Location = new System.Drawing.Point(188, 251);
             this.bttn_accept.Name = "bttn_accept";
             this.bttn_accept.Size = new System.Drawing.Size(75, 23);
             this.bttn_accept.TabIndex = 5;
-            this.bttn_accept.Text = "Bestätigen";
+            this.bttn_accept.Text = "anmelden";
             this.bttn_accept.UseVisualStyleBackColor = true;
             this.bttn_accept.Click += new System.EventHandler(this.bttn_accept_Click);
             // 
             // bttn_close
             // 
-            this.bttn_close.Location = new System.Drawing.Point(233, 289);
+            this.bttn_close.Location = new System.Drawing.Point(41, 251);
             this.bttn_close.Name = "bttn_close";
             this.bttn_close.Size = new System.Drawing.Size(75, 23);
             this.bttn_close.TabIndex = 6;
@@ -103,7 +104,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(363, 450);
+            this.ClientSize = new System.Drawing.Size(312, 318);
             this.Controls.Add(this.bttn_close);
             this.Controls.Add(this.bttn_accept);
             this.Controls.Add(this.lbl_headline);

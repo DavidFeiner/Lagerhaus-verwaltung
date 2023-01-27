@@ -33,7 +33,7 @@
             // 
             // bttn_back
             // 
-            this.bttn_back.Location = new System.Drawing.Point(640, 374);
+            this.bttn_back.Location = new System.Drawing.Point(511, 382);
             this.bttn_back.Margin = new System.Windows.Forms.Padding(2);
             this.bttn_back.Name = "bttn_back";
             this.bttn_back.Size = new System.Drawing.Size(118, 38);
@@ -46,7 +46,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(651, 450);
             this.Controls.Add(this.bttn_back);
             this.Name = "sales";
             this.Text = "sales";
