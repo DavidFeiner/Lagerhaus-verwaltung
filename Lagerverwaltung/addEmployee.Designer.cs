@@ -42,7 +42,7 @@
             this.txtB_password2 = new System.Windows.Forms.TextBox();
             this.bttn_save = new System.Windows.Forms.Button();
             this.bttn_back = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+
             this.SuspendLayout();
             // 
             // lbl_employee
@@ -171,12 +171,12 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(308, 298);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(133, 23);
-            this.button1.TabIndex = 26;
-            this.button1.Text = "alle Mitarbeiter anzeigen";
-            this.button1.UseVisualStyleBackColor = true;
+            //this.button1.Location = new System.Drawing.Point(308, 298);
+            //this.button1.Name = "button1";
+            //this.button1.Size = new System.Drawing.Size(133, 23);
+            //this.button1.TabIndex = 26;
+            //this.button1.Text = "alle Mitarbeiter anzeigen";
+            //this.button1.UseVisualStyleBackColor = true;
             // 
             // lbl_name
             // 
