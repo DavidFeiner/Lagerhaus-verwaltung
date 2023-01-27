@@ -15,6 +15,8 @@ namespace Lagerverwaltung
         public login()
         {
             InitializeComponent();
+            SQLCommunication sql = new SQLCommunication();
+            sql.CreateDatabase();
         }
 
        
