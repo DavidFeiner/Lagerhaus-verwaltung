@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.bttn_back = new System.Windows.Forms.Button();
+            this.lbl_name = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // bttn_back
@@ -42,20 +43,32 @@
             this.bttn_back.UseVisualStyleBackColor = true;
             this.bttn_back.Click += new System.EventHandler(this.bttn_back_Click);
             // 
+            // lbl_name
+            // 
+            this.lbl_name.AutoSize = true;
+            this.lbl_name.Location = new System.Drawing.Point(21, 25);
+            this.lbl_name.Name = "lbl_name";
+            this.lbl_name.Size = new System.Drawing.Size(56, 13);
+            this.lbl_name.TabIndex = 9;
+            this.lbl_name.Text = "Mitarbeiter";
+            // 
             // addEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lbl_name);
             this.Controls.Add(this.bttn_back);
             this.Name = "addEmployee";
             this.Text = "addEmployee";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Button bttn_back;
+        private System.Windows.Forms.Label lbl_name;
     }
 }
