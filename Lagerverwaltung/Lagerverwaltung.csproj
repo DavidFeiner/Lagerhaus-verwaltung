@@ -84,6 +84,7 @@
     <Compile Include="sell.Designer.cs">
       <DependentUpon>sell.cs</DependentUpon>
     </Compile>
+    <Compile Include="SQLCommunication.cs" />
     <Compile Include="storage.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -49,7 +49,7 @@
             this.dgv_storage.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_storage.Location = new System.Drawing.Point(12, 67);
             this.dgv_storage.Name = "dgv_storage";
-            this.dgv_storage.Size = new System.Drawing.Size(613, 356);
+            this.dgv_storage.Size = new System.Drawing.Size(613, 360);
             this.dgv_storage.TabIndex = 9;
             // 
             // bttn_back
@@ -60,6 +60,7 @@
             this.bttn_back.TabIndex = 10;
             this.bttn_back.Text = "zurück";
             this.bttn_back.UseVisualStyleBackColor = true;
+            this.bttn_back.Click += new System.EventHandler(this.bttn_back_Click_1);
             // 
             // storage
             // 

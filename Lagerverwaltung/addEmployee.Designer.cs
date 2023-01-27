@@ -30,7 +30,6 @@
         {
             this.lbl_employee = new System.Windows.Forms.Label();
             this.lbl_storageHeadline = new System.Windows.Forms.Label();
-            this.lbl_name = new System.Windows.Forms.Label();
             this.lbl_surname = new System.Windows.Forms.Label();
             this.lbl_password2 = new System.Windows.Forms.Label();
             this.lbl_password = new System.Windows.Forms.Label();
@@ -42,14 +41,15 @@
             this.txtB_password2 = new System.Windows.Forms.TextBox();
             this.bttn_save = new System.Windows.Forms.Button();
             this.bttn_back = new System.Windows.Forms.Button();
-
+            this.bttn_seeAll = new System.Windows.Forms.Button();
+            this.lbl_name = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_employee
             // 
             this.lbl_employee.AutoSize = true;
             this.lbl_employee.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_employee.Location = new System.Drawing.Point(35, 20);
+            this.lbl_employee.Location = new System.Drawing.Point(185, 9);
             this.lbl_employee.Name = "lbl_employee";
             this.lbl_employee.Size = new System.Drawing.Size(114, 25);
             this.lbl_employee.TabIndex = 10;
@@ -64,16 +64,6 @@
             this.lbl_storageHeadline.Size = new System.Drawing.Size(152, 18);
             this.lbl_storageHeadline.TabIndex = 11;
             this.lbl_storageHeadline.Text = "Mitarbeiter hinzufügen";
-            // 
-            // lbl_name
-            // 
-            this.lbl_name.AutoSize = true;
-            this.lbl_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_name.Location = new System.Drawing.Point(37, 130);
-            this.lbl_name.Name = "lbl_name";
-            this.lbl_name.Size = new System.Drawing.Size(60, 15);
-            this.lbl_name.TabIndex = 13;
-            this.lbl_name.Text = "Vorname:";
             // 
             // lbl_surname
             // 
@@ -169,29 +159,31 @@
             this.bttn_back.UseVisualStyleBackColor = true;
             this.bttn_back.Click += new System.EventHandler(this.bttn_back_Click_1);
             // 
-            // button1
+            // bttn_seeAll
             // 
-            //this.button1.Location = new System.Drawing.Point(308, 298);
-            //this.button1.Name = "button1";
-            //this.button1.Size = new System.Drawing.Size(133, 23);
-            //this.button1.TabIndex = 26;
-            //this.button1.Text = "alle Mitarbeiter anzeigen";
-            //this.button1.UseVisualStyleBackColor = true;
+            this.bttn_seeAll.Location = new System.Drawing.Point(355, 282);
+            this.bttn_seeAll.Name = "bttn_seeAll";
+            this.bttn_seeAll.Size = new System.Drawing.Size(86, 39);
+            this.bttn_seeAll.TabIndex = 26;
+            this.bttn_seeAll.Text = "alle Mitarbeiter anzeigen";
+            this.bttn_seeAll.UseVisualStyleBackColor = true;
             // 
             // lbl_name
             // 
             this.lbl_name.AutoSize = true;
-            this.lbl_name.Location = new System.Drawing.Point(21, 25);
+            this.lbl_name.Location = new System.Drawing.Point(40, 130);
             this.lbl_name.Name = "lbl_name";
-            this.lbl_name.Size = new System.Drawing.Size(56, 13);
-            this.lbl_name.TabIndex = 9;
-            this.lbl_name.Text = "Mitarbeiter";
+            this.lbl_name.Size = new System.Drawing.Size(52, 13);
+            this.lbl_name.TabIndex = 27;
+            this.lbl_name.Text = "Vorname:";
             // 
             // addEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(478, 372);
+            this.Controls.Add(this.lbl_name);
+            this.Controls.Add(this.bttn_seeAll);
             this.Controls.Add(this.bttn_back);
             this.Controls.Add(this.bttn_save);
             this.Controls.Add(this.txtB_password2);
@@ -203,7 +195,6 @@
             this.Controls.Add(this.lbl_password);
             this.Controls.Add(this.lbl_password2);
             this.Controls.Add(this.lbl_surname);
-            this.Controls.Add(this.lbl_name);
             this.Controls.Add(this.lbl_storageHeadline);
             this.Controls.Add(this.lbl_employee);
             this.Name = "addEmployee";
@@ -217,7 +208,6 @@
 
         private System.Windows.Forms.Label lbl_employee;
         private System.Windows.Forms.Label lbl_storageHeadline;
-        private System.Windows.Forms.Label lbl_name;
         private System.Windows.Forms.Label lbl_surname;
         private System.Windows.Forms.Label lbl_password2;
         private System.Windows.Forms.Label lbl_password;
@@ -229,5 +219,7 @@
         private System.Windows.Forms.TextBox txtB_password2;
         private System.Windows.Forms.Button bttn_save;
         private System.Windows.Forms.Button bttn_back;
+        private System.Windows.Forms.Button bttn_seeAll;
+        private System.Windows.Forms.Label lbl_name;
     }
 }

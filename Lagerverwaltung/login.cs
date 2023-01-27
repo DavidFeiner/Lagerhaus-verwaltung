@@ -29,7 +29,6 @@ namespace Lagerverwaltung
             mainmenu mainmenu = new mainmenu();
             this.Hide();
             mainmenu.ShowDialog();
-            this.Show();
            
             
         }
