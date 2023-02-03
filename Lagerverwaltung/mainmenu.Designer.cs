@@ -40,7 +40,7 @@
             // 
             // bttn_storage
             // 
-            this.bttn_storage.Location = new System.Drawing.Point(26, 339);
+            this.bttn_storage.Location = new System.Drawing.Point(26, 278);
             this.bttn_storage.Name = "bttn_storage";
             this.bttn_storage.Size = new System.Drawing.Size(118, 38);
             this.bttn_storage.TabIndex = 0;
@@ -50,7 +50,7 @@
             // 
             // bttn_sales
             // 
-            this.bttn_sales.Location = new System.Drawing.Point(26, 281);
+            this.bttn_sales.Location = new System.Drawing.Point(26, 218);
             this.bttn_sales.Name = "bttn_sales";
             this.bttn_sales.Size = new System.Drawing.Size(118, 38);
             this.bttn_sales.TabIndex = 1;
@@ -60,7 +60,7 @@
             // 
             // bttn_buy
             // 
-            this.bttn_buy.Location = new System.Drawing.Point(26, 148);
+            this.bttn_buy.Location = new System.Drawing.Point(26, 95);
             this.bttn_buy.Name = "bttn_buy";
             this.bttn_buy.Size = new System.Drawing.Size(118, 38);
             this.bttn_buy.TabIndex = 2;
@@ -70,7 +70,7 @@
             // 
             // bttn_sell
             // 
-            this.bttn_sell.Location = new System.Drawing.Point(26, 214);
+            this.bttn_sell.Location = new System.Drawing.Point(26, 159);
             this.bttn_sell.Name = "bttn_sell";
             this.bttn_sell.Size = new System.Drawing.Size(118, 38);
             this.bttn_sell.TabIndex = 3;
@@ -80,8 +80,8 @@
             // 
             // bttn_employee
             // 
-            this.bttn_employee.Location = new System.Drawing.Point(437, 339);
-            this.bttn_employee.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bttn_employee.Location = new System.Drawing.Point(365, 278);
+            this.bttn_employee.Margin = new System.Windows.Forms.Padding(2);
             this.bttn_employee.Name = "bttn_employee";
             this.bttn_employee.Size = new System.Drawing.Size(118, 38);
             this.bttn_employee.TabIndex = 4;
@@ -91,8 +91,8 @@
             // 
             // bttn_signOut
             // 
-            this.bttn_signOut.Location = new System.Drawing.Point(585, 339);
-            this.bttn_signOut.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bttn_signOut.Location = new System.Drawing.Point(500, 278);
+            this.bttn_signOut.Margin = new System.Windows.Forms.Padding(2);
             this.bttn_signOut.Name = "bttn_signOut";
             this.bttn_signOut.Size = new System.Drawing.Size(118, 38);
             this.bttn_signOut.TabIndex = 5;
@@ -102,8 +102,8 @@
             // 
             // txtB_info
             // 
-            this.txtB_info.Location = new System.Drawing.Point(266, 148);
-            this.txtB_info.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtB_info.Location = new System.Drawing.Point(179, 95);
+            this.txtB_info.Margin = new System.Windows.Forms.Padding(2);
             this.txtB_info.Multiline = true;
             this.txtB_info.Name = "txtB_info";
             this.txtB_info.Size = new System.Drawing.Size(439, 170);
@@ -112,9 +112,10 @@
             // lbl_headline2
             // 
             this.lbl_headline2.AutoSize = true;
-            this.lbl_headline2.Location = new System.Drawing.Point(313, 58);
+            this.lbl_headline2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_headline2.Location = new System.Drawing.Point(255, 33);
             this.lbl_headline2.Name = "lbl_headline2";
-            this.lbl_headline2.Size = new System.Drawing.Size(86, 13);
+            this.lbl_headline2.Size = new System.Drawing.Size(115, 18);
             this.lbl_headline2.TabIndex = 7;
             this.lbl_headline2.Text = "Lagerverwaltung";
             // 
@@ -122,7 +123,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(651, 352);
             this.Controls.Add(this.lbl_headline2);
             this.Controls.Add(this.txtB_info);
             this.Controls.Add(this.bttn_signOut);

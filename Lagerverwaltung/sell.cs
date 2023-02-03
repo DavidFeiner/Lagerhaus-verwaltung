@@ -23,5 +23,12 @@ namespace Lagerverwaltung
             mainmenu.Show();
             this.Hide();
         }
+
+        private void bttn_back_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            mainmenu mainmenu = new mainmenu();
+            mainmenu.ShowDialog();
+        }
     }
 }
