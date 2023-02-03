@@ -32,8 +32,11 @@ namespace Lagerverwaltung
                     con.Close();
                     con.ConnectionString += "database = MayrhoferFeiner;";
                     con.Open();
-                    cmd.CommandText = "create Table loginValues([username] nvarchar(50), [password] nvarchar(50))";
+                    cmd.CommandText = "create Table employees([name] nvarchar(50), [surname] nvarchar(50), [username] nvarchar(50), [password] nvarchar(50))";
                     cmd.ExecuteNonQuery();
+                    cmd.CommandText = "create Table products([product] nvarchar(50), [quantity] integer, [supplier] nvarchar(50), [buyer] nvarchar(50), [discountS] decimal, [discountR] decimal, [unitPrice] decimal, [price] decimal, [totalPrice] decimal, [UST] decimal )";
+                    cmd.ExecuteNonQuery();
+
                     con.Close();
 
 
