@@ -15,6 +15,8 @@ namespace Lagerverwaltung
         public login()
         {
             InitializeComponent();
+            SQLCommunication sql = new SQLCommunication();
+            sql.CreateDatabase();
         }
 
        
@@ -27,8 +29,10 @@ namespace Lagerverwaltung
         private void bttn_accept_Click(object sender, EventArgs e)
         {
             mainmenu mainmenu = new mainmenu();
-            mainmenu.Show();
             this.Hide();
+            mainmenu.ShowDialog();
+           
+            
         }
     }
 }

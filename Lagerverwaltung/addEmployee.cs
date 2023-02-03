@@ -17,11 +17,13 @@ namespace Lagerverwaltung
             InitializeComponent();
         }
 
-        private void bttn_back_Click(object sender, EventArgs e)
+        
+
+        private void bttn_back_Click_1(object sender, EventArgs e)
         {
-            mainmenu mainmenu = new mainmenu();
-            mainmenu.Show();
             this.Hide();
+            mainmenu mainmenu = new mainmenu();
+            mainmenu.ShowDialog();
         }
     }
 }

@@ -19,9 +19,10 @@ namespace Lagerverwaltung
 
         private void bttn_signOut_Click(object sender, EventArgs e)
         {
+            this.Hide();
             login signOut = new login();
             signOut.Show();
-            this.Hide();
+            
             
         }
 
@@ -29,36 +30,37 @@ namespace Lagerverwaltung
         {
 
             storage storage = new storage();
-            storage.Show();
             this.Hide();
+            storage.ShowDialog();
         }
 
         private void bttn_sales_Click(object sender, EventArgs e)
         {
             sales sales = new sales();
-            sales.Show();
             this.Hide();
+            sales.ShowDialog();
         }
 
         private void bttn_buy_Click(object sender, EventArgs e)
         {
             buy buy = new buy();
-            buy.Show();
             this.Hide();
+            buy.ShowDialog();
         }
 
         private void bttn_sell_Click(object sender, EventArgs e)
         {
             sell sell= new sell();
-            sell.Show();
             this.Hide();
+            sell.ShowDialog();
         }
 
         private void bttn_employee_Click(object sender, EventArgs e)
         {
             addEmployee employee = new addEmployee();
-            employee.Show();
             this.Hide();
+            employee.ShowDialog();
+            
         }
     }
 }
