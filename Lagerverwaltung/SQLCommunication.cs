@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,22 +19,24 @@ namespace Lagerverwaltung
 
         public void CreateDatabase()
         {
-            string databaseName = "MayrhoferFeiner";
+            string nameDB = "MayrhoferFeinerrr";
 
             //check if Database exists and if not create database and table 
-            bool databaseExists = CheckDatabaseExists(connectionString, databaseName);
+            bool databaseExists = CheckDatabaseExists(connectionString, nameDB);
 
             if (databaseExists == false)
             {
                 try
                 {
                     con.Open();
-                    cmd.CommandText = "Create database MayrhoferFeiner";
+                    cmd.CommandText = "Create database " + nameDB;
                     cmd.ExecuteNonQuery();
                     con.Close();
-                    con.ConnectionString += "database = MayrhoferFeiner;";
+                    con.ConnectionString += "database = " + nameDB + "; ";
                     con.Open();
-                    cmd.CommandText = "create Table employees([name] nvarchar(50), [surname] nvarchar(50), [username] nvarchar(50), [password] nvarchar(50))";
+                    cmd.CommandText = "create Table login([name] nvarchar(50), [surname] nvarchar(50), [username] nvarchar(50), [password] nvarchar(50))";
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = "insert into login(name, surname, username, password) values ('admin', 'admin', 'admin', 'admin')";
                     cmd.ExecuteNonQuery();
                     cmd.CommandText = "create Table products([product] nvarchar(50), [quantity] integer, [supplier] nvarchar(50), [buyer] nvarchar(50), [discountS] decimal, [discountR] decimal, [unitPrice] decimal, [price] decimal, [totalPrice] decimal, [UST] decimal )";
                     cmd.ExecuteNonQuery();
@@ -45,6 +49,8 @@ namespace Lagerverwaltung
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                    if (con.State != ConnectionState.Closed)
+                        con.Close();
                 }
             }
 
@@ -63,6 +69,42 @@ namespace Lagerverwaltung
                     
                 }
             }
+        }
+
+        public bool CheckLogin(string username, string password)
+        {
+            bool correctLogin = false;
+
+            try
+            {
+                con.Open();
+                //cmd.CommandText = "select * from login where username = '" + username + "' and password = '" + password + "'";
+                cmd.CommandText = "select * from login where username = 'admin' and password = 'admin'; ";
+                cmd.ExecuteNonQuery();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    correctLogin = true;
+                    reader.Close();
+                    con.Close();
+
+                }
+                else
+                {
+                    correctLogin = false;
+                }
+                con.Close();
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                if (con.State != ConnectionState.Closed)
+                    con.Close();
+            }
+
+            return correctLogin;
         }
     }
 }
