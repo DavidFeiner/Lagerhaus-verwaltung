@@ -106,5 +106,39 @@ namespace Lagerverwaltung
 
             return correctLogin;
         }
+
+        public void AddEmployee(string name, string surname, string username, string password)
+        {
+            try
+            {
+                con.Open();
+                cmd.CommandText = "select * from login where username = 'admin' and password = 'admin'; ";
+                cmd.ExecuteNonQuery();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    MessageBox.Show("Benutzername existiert schon. Suchen Sie einen anderen aus: ");
+                    reader.Close();
+                    con.Close();
+
+                }
+                else
+                {
+                    cmd.CommandText = "instert into login (name, surname, username, password) values ('" + name +
+                      "', '" + surname + "','" + username + "' , '" + password + "');";
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                con.Close();
+                reader.Close();
+
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                if (con.State != ConnectionState.Closed)
+                    con.Close();
+            }
+        }
     }
 }
