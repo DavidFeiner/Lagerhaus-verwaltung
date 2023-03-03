@@ -12,11 +12,15 @@ namespace Lagerverwaltung
 {
     public partial class login : Form
     {
+
+        SQLCommunication sql = new SQLCommunication();
+        string username, password;
         public login()
         {
             InitializeComponent();
-            SQLCommunication sql = new SQLCommunication();
             sql.CreateDatabase();
+            username = Convert.ToString(txtB_username.Text);
+            password = Convert.ToString(txtB_password.Text);
         }
 
        
@@ -28,9 +32,19 @@ namespace Lagerverwaltung
 
         private void bttn_accept_Click(object sender, EventArgs e)
         {
-            mainmenu mainmenu = new mainmenu();
-            this.Hide();
-            mainmenu.ShowDialog();
+            bool correct =  sql.CheckLogin(username, password);
+
+            if(correct)
+            {
+                mainmenu mainmenu = new mainmenu();
+                this.Hide();
+                mainmenu.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Username or Password are false!");
+            }
+            
            
             
         }
