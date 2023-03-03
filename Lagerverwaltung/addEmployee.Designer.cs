@@ -148,6 +148,7 @@
             this.bttn_save.TabIndex = 24;
             this.bttn_save.Text = "speichern";
             this.bttn_save.UseVisualStyleBackColor = true;
+            this.bttn_save.Click += new System.EventHandler(this.bttn_save_Click);
             // 
             // bttn_back
             // 

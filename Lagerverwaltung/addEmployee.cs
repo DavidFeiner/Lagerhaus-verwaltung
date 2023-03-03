@@ -12,9 +12,13 @@ namespace Lagerverwaltung
 {
     public partial class addEmployee : Form
     {
+
+        string name, surname, username, password;
+        SQLCommunication sql = new SQLCommunication();
         public addEmployee()
         {
             InitializeComponent();
+            
         }
 
         
@@ -24,6 +28,24 @@ namespace Lagerverwaltung
             this.Hide();
             mainmenu mainmenu = new mainmenu();
             mainmenu.ShowDialog();
+        }
+
+        private void bttn_save_Click(object sender, EventArgs e)
+        {
+            name = Convert.ToString(txtB_name.Text);
+            surname = Convert.ToString(txtB_password.Text);
+            username = Convert.ToString(txtB_username.Text);
+            password = Convert.ToString(txtB_password.Text);
+
+
+            if(password.Equals(txtB_password2))
+            {
+                sql.AddEmployee(name, surname, username, password);
+            }
+
+            
+
+
         }
     }
 }
