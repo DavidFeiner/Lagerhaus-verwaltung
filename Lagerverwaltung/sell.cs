@@ -30,5 +30,16 @@ namespace Lagerverwaltung
             mainmenu mainmenu = new mainmenu();
             mainmenu.ShowDialog();
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+
+        }
+
+        private void ProduktCmbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
