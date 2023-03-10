@@ -19,7 +19,7 @@ namespace Lagerverwaltung
 
         public void CreateDatabase()
         {
-            string nameDB = "MayrhoferFeinerrr";
+            string nameDB = "MayrhoferFeiner";
 
             //check if Database exists and if not create database and table 
             bool databaseExists = CheckDatabaseExists(connectionString, nameDB);
@@ -79,7 +79,8 @@ namespace Lagerverwaltung
             {
                 con.Open();
                 //cmd.CommandText = "select * from login where username = '" + username + "' and password = '" + password + "'";
-                cmd.CommandText = "select * from login where username = 'admin' and password = 'admin'; ";
+               // cmd.CommandText = "select * from login where username = '" + username + "' and password = '" + password + "';";
+                cmd.CommandText = "select * from login where username = 'admin' and password = 'admin';";
                 cmd.ExecuteNonQuery();
 
                 SqlDataReader reader = cmd.ExecuteReader();
