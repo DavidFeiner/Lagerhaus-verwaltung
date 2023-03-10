@@ -34,6 +34,8 @@
             this.cbB_product = new System.Windows.Forms.ComboBox();
             this.lbl_product = new System.Windows.Forms.Label();
             this.dgV_buy = new System.Windows.Forms.DataGridView();
+            this.lbl_amount = new System.Windows.Forms.Label();
+            this.lbl_money = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgV_buy)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,11 +93,31 @@
             this.dgV_buy.Size = new System.Drawing.Size(586, 260);
             this.dgV_buy.TabIndex = 20;
             // 
+            // lbl_amount
+            // 
+            this.lbl_amount.AutoSize = true;
+            this.lbl_amount.Location = new System.Drawing.Point(406, 31);
+            this.lbl_amount.Name = "lbl_amount";
+            this.lbl_amount.Size = new System.Drawing.Size(103, 13);
+            this.lbl_amount.TabIndex = 21;
+            this.lbl_amount.Text = "vorhandene Menge:";
+            // 
+            // lbl_money
+            // 
+            this.lbl_money.AutoSize = true;
+            this.lbl_money.Location = new System.Drawing.Point(406, 55);
+            this.lbl_money.Name = "lbl_money";
+            this.lbl_money.Size = new System.Drawing.Size(32, 13);
+            this.lbl_money.TabIndex = 22;
+            this.lbl_money.Text = "Geld:";
+            // 
             // buy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(651, 450);
+            this.Controls.Add(this.lbl_money);
+            this.Controls.Add(this.lbl_amount);
             this.Controls.Add(this.dgV_buy);
             this.Controls.Add(this.lbl_product);
             this.Controls.Add(this.cbB_product);
@@ -118,5 +140,7 @@
         private System.Windows.Forms.ComboBox cbB_product;
         private System.Windows.Forms.Label lbl_product;
         private System.Windows.Forms.DataGridView dgV_buy;
+        private System.Windows.Forms.Label lbl_amount;
+        private System.Windows.Forms.Label lbl_money;
     }
 }

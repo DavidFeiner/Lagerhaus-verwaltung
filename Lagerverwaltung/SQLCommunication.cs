@@ -38,7 +38,7 @@ namespace Lagerverwaltung
                     cmd.ExecuteNonQuery();
                     cmd.CommandText = "insert into login(name, surname, username, password) values ('admin', 'admin', 'admin', 'admin')";
                     cmd.ExecuteNonQuery();
-                    cmd.CommandText = "create Table products([product] nvarchar(50), [quantity] integer, [supplier] nvarchar(50), [buyer] nvarchar(50), [discountS] decimal, [discountR] decimal, [unitPrice] decimal, [price] decimal, [totalPrice] decimal, [UST] decimal )";
+                    cmd.CommandText = "create Table products([product] nvarchar(50),[buyer] nvarchar(50), [quantity] integer, [supplier] nvarchar(50),  [discountS] decimal, [discountR] decimal, [unitPrice] decimal, [price] decimal, [totalPrice] decimal, [UST] decimal )";
                     cmd.ExecuteNonQuery();
 
                     con.Close();
@@ -52,6 +52,12 @@ namespace Lagerverwaltung
                     if (con.State != ConnectionState.Closed)
                         con.Close();
                 }
+            }
+            else
+            {
+               
+                con.ConnectionString += "database = " + nameDB + "; ";
+               
             }
 
         }
@@ -78,9 +84,9 @@ namespace Lagerverwaltung
             try
             {
                 con.Open();
-                //cmd.CommandText = "select * from login where username = '" + username + "' and password = '" + password + "'";
+                cmd.CommandText = "select * from login where username = '" + username + "' and password = '" + password + "'";
                // cmd.CommandText = "select * from login where username = '" + username + "' and password = '" + password + "';";
-                cmd.CommandText = "select * from login where username = 'admin' and password = 'admin';";
+                //cmd.CommandText = "select * from login where username = 'admin' and password = 'admin';";
                 cmd.ExecuteNonQuery();
 
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -140,6 +146,30 @@ namespace Lagerverwaltung
                 if (con.State != ConnectionState.Closed)
                     con.Close();
             }
+        }
+
+        public DataTable DataOverview(DataGridView dataOverview)
+        {
+            DataTable dataTable = new DataTable();
+            try
+            {
+                //put data from tables into DataGridView
+                con.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter("Select * from products", con);
+
+                adapter.Fill(dataTable);
+
+                dataOverview.DataSource = dataTable;
+                con.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                if (con.State != ConnectionState.Closed)
+                    con.Close();
+            }
+            return dataTable;
         }
     }
 }

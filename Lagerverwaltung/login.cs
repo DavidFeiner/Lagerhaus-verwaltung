@@ -43,6 +43,10 @@ namespace Lagerverwaltung
             else
             {
                 MessageBox.Show("Username or Password are false!");
+
+                mainmenu mainmenu = new mainmenu();
+                this.Hide();
+                mainmenu.ShowDialog();
             }
             
            
