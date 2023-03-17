@@ -12,9 +12,11 @@ namespace Lagerverwaltung
 {
     public partial class buy : Form
     {
+        SQLCommunication cmc = new SQLCommunication();
         public buy()
         {
             InitializeComponent();
+            DataTable dataTable = cmc.DataOverview(dgV_buy);
         }
 
         

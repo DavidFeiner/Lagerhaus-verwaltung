@@ -30,25 +30,15 @@
         {
             this.lbl_headline = new System.Windows.Forms.Label();
             this.lbl_product = new System.Windows.Forms.Label();
-            this.lbl_buyer = new System.Windows.Forms.Label();
-            this.lbl_price = new System.Windows.Forms.Label();
-            this.lbl_totalPrice = new System.Windows.Forms.Label();
-            this.lbl_discountS = new System.Windows.Forms.Label();
-            this.lbl_discountR = new System.Windows.Forms.Label();
-            this.lbl_quantity = new System.Windows.Forms.Label();
-            this.lbl_priceN = new System.Windows.Forms.Label();
-            this.lbl_ust = new System.Windows.Forms.Label();
             this.bttn_save = new System.Windows.Forms.Button();
             this.bttn_back = new System.Windows.Forms.Button();
-            this.txtB_product = new System.Windows.Forms.TextBox();
-            this.txtB_buyer = new System.Windows.Forms.TextBox();
-            this.txtB_priceB = new System.Windows.Forms.TextBox();
-            this.txtB_ust = new System.Windows.Forms.TextBox();
-            this.txtB_priceN = new System.Windows.Forms.TextBox();
-            this.txtB_discountS = new System.Windows.Forms.TextBox();
-            this.txtB_discountR = new System.Windows.Forms.TextBox();
-            this.txtB_quantity = new System.Windows.Forms.TextBox();
-            this.txtB_price = new System.Windows.Forms.TextBox();
+            this.ProduktCmbx = new System.Windows.Forms.ComboBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.MengeL = new System.Windows.Forms.Label();
+            this.GeldL = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // lbl_headline
@@ -71,89 +61,9 @@
             this.lbl_product.TabIndex = 10;
             this.lbl_product.Text = "Produkt:";
             // 
-            // lbl_buyer
-            // 
-            this.lbl_buyer.AutoSize = true;
-            this.lbl_buyer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_buyer.Location = new System.Drawing.Point(405, 94);
-            this.lbl_buyer.Name = "lbl_buyer";
-            this.lbl_buyer.Size = new System.Drawing.Size(48, 16);
-            this.lbl_buyer.TabIndex = 21;
-            this.lbl_buyer.Text = "Käufer:";
-            // 
-            // lbl_price
-            // 
-            this.lbl_price.AutoSize = true;
-            this.lbl_price.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_price.Location = new System.Drawing.Point(23, 120);
-            this.lbl_price.Name = "lbl_price";
-            this.lbl_price.Size = new System.Drawing.Size(76, 16);
-            this.lbl_price.TabIndex = 20;
-            this.lbl_price.Text = "Einzelpreis:";
-            // 
-            // lbl_totalPrice
-            // 
-            this.lbl_totalPrice.AutoSize = true;
-            this.lbl_totalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_totalPrice.Location = new System.Drawing.Point(23, 280);
-            this.lbl_totalPrice.Name = "lbl_totalPrice";
-            this.lbl_totalPrice.Size = new System.Drawing.Size(125, 16);
-            this.lbl_totalPrice.TabIndex = 19;
-            this.lbl_totalPrice.Text = "Bruttoverkaufspreis:";
-            // 
-            // lbl_discountS
-            // 
-            this.lbl_discountS.AutoSize = true;
-            this.lbl_discountS.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_discountS.Location = new System.Drawing.Point(23, 200);
-            this.lbl_discountS.Name = "lbl_discountS";
-            this.lbl_discountS.Size = new System.Drawing.Size(52, 16);
-            this.lbl_discountS.TabIndex = 18;
-            this.lbl_discountS.Text = "Skonto:";
-            // 
-            // lbl_discountR
-            // 
-            this.lbl_discountR.AutoSize = true;
-            this.lbl_discountR.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_discountR.Location = new System.Drawing.Point(23, 174);
-            this.lbl_discountR.Name = "lbl_discountR";
-            this.lbl_discountR.Size = new System.Drawing.Size(50, 16);
-            this.lbl_discountR.TabIndex = 17;
-            this.lbl_discountR.Text = "Rabatt:";
-            // 
-            // lbl_quantity
-            // 
-            this.lbl_quantity.AutoSize = true;
-            this.lbl_quantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_quantity.Location = new System.Drawing.Point(23, 147);
-            this.lbl_quantity.Name = "lbl_quantity";
-            this.lbl_quantity.Size = new System.Drawing.Size(52, 16);
-            this.lbl_quantity.TabIndex = 16;
-            this.lbl_quantity.Text = "Menge:";
-            // 
-            // lbl_priceN
-            // 
-            this.lbl_priceN.AutoSize = true;
-            this.lbl_priceN.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_priceN.Location = new System.Drawing.Point(23, 225);
-            this.lbl_priceN.Name = "lbl_priceN";
-            this.lbl_priceN.Size = new System.Drawing.Size(72, 16);
-            this.lbl_priceN.TabIndex = 22;
-            this.lbl_priceN.Text = "Nettopreis:";
-            // 
-            // lbl_ust
-            // 
-            this.lbl_ust.AutoSize = true;
-            this.lbl_ust.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_ust.Location = new System.Drawing.Point(27, 252);
-            this.lbl_ust.Name = "lbl_ust";
-            this.lbl_ust.Size = new System.Drawing.Size(37, 16);
-            this.lbl_ust.TabIndex = 23;
-            this.lbl_ust.Text = "+Ust:";
-            // 
             // bttn_save
             // 
-            this.bttn_save.Location = new System.Drawing.Point(26, 398);
+            this.bttn_save.Location = new System.Drawing.Point(535, 398);
             this.bttn_save.Name = "bttn_save";
             this.bttn_save.Size = new System.Drawing.Size(75, 23);
             this.bttn_save.TabIndex = 24;
@@ -162,7 +72,7 @@
             // 
             // bttn_back
             // 
-            this.bttn_back.Location = new System.Drawing.Point(535, 398);
+            this.bttn_back.Location = new System.Drawing.Point(26, 398);
             this.bttn_back.Name = "bttn_back";
             this.bttn_back.Size = new System.Drawing.Size(75, 23);
             this.bttn_back.TabIndex = 25;
@@ -170,97 +80,78 @@
             this.bttn_back.UseVisualStyleBackColor = true;
             this.bttn_back.Click += new System.EventHandler(this.bttn_back_Click_1);
             // 
-            // txtB_product
+            // ProduktCmbx
             // 
-            this.txtB_product.Location = new System.Drawing.Point(175, 93);
-            this.txtB_product.Name = "txtB_product";
-            this.txtB_product.Size = new System.Drawing.Size(100, 20);
-            this.txtB_product.TabIndex = 26;
+            this.ProduktCmbx.FormattingEnabled = true;
+            this.ProduktCmbx.Location = new System.Drawing.Point(109, 88);
+            this.ProduktCmbx.Name = "ProduktCmbx";
+            this.ProduktCmbx.Size = new System.Drawing.Size(121, 21);
+            this.ProduktCmbx.TabIndex = 26;
+            this.ProduktCmbx.SelectedIndexChanged += new System.EventHandler(this.ProduktCmbx_SelectedIndexChanged);
             // 
-            // txtB_buyer
+            // dataGridView1
             // 
-            this.txtB_buyer.Location = new System.Drawing.Point(510, 89);
-            this.txtB_buyer.Name = "txtB_buyer";
-            this.txtB_buyer.Size = new System.Drawing.Size(100, 20);
-            this.txtB_buyer.TabIndex = 28;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(26, 134);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(584, 258);
+            this.dataGridView1.TabIndex = 27;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // txtB_priceB
+            // label1
             // 
-            this.txtB_priceB.Location = new System.Drawing.Point(175, 280);
-            this.txtB_priceB.Name = "txtB_priceB";
-            this.txtB_priceB.Size = new System.Drawing.Size(100, 20);
-            this.txtB_priceB.TabIndex = 29;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(520, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Menge";
             // 
-            // txtB_ust
+            // label2
             // 
-            this.txtB_ust.Location = new System.Drawing.Point(175, 251);
-            this.txtB_ust.Name = "txtB_ust";
-            this.txtB_ust.Size = new System.Drawing.Size(100, 20);
-            this.txtB_ust.TabIndex = 30;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(523, 61);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(29, 13);
+            this.label2.TabIndex = 29;
+            this.label2.Text = "Geld";
             // 
-            // txtB_priceN
+            // MengeL
             // 
-            this.txtB_priceN.Location = new System.Drawing.Point(175, 222);
-            this.txtB_priceN.Name = "txtB_priceN";
-            this.txtB_priceN.Size = new System.Drawing.Size(100, 20);
-            this.txtB_priceN.TabIndex = 31;
+            this.MengeL.AutoSize = true;
+            this.MengeL.Location = new System.Drawing.Point(570, 31);
+            this.MengeL.Name = "MengeL";
+            this.MengeL.Size = new System.Drawing.Size(35, 13);
+            this.MengeL.TabIndex = 30;
+            this.MengeL.Text = "label3";
             // 
-            // txtB_discountS
+            // GeldL
             // 
-            this.txtB_discountS.Location = new System.Drawing.Point(175, 196);
-            this.txtB_discountS.Name = "txtB_discountS";
-            this.txtB_discountS.Size = new System.Drawing.Size(100, 20);
-            this.txtB_discountS.TabIndex = 32;
-            // 
-            // txtB_discountR
-            // 
-            this.txtB_discountR.Location = new System.Drawing.Point(175, 173);
-            this.txtB_discountR.Name = "txtB_discountR";
-            this.txtB_discountR.Size = new System.Drawing.Size(100, 20);
-            this.txtB_discountR.TabIndex = 33;
-            // 
-            // txtB_quantity
-            // 
-            this.txtB_quantity.Location = new System.Drawing.Point(175, 147);
-            this.txtB_quantity.Name = "txtB_quantity";
-            this.txtB_quantity.Size = new System.Drawing.Size(100, 20);
-            this.txtB_quantity.TabIndex = 34;
-            // 
-            // txtB_price
-            // 
-            this.txtB_price.Location = new System.Drawing.Point(175, 120);
-            this.txtB_price.Name = "txtB_price";
-            this.txtB_price.Size = new System.Drawing.Size(100, 20);
-            this.txtB_price.TabIndex = 35;
+            this.GeldL.AutoSize = true;
+            this.GeldL.Location = new System.Drawing.Point(570, 61);
+            this.GeldL.Name = "GeldL";
+            this.GeldL.Size = new System.Drawing.Size(35, 13);
+            this.GeldL.TabIndex = 31;
+            this.GeldL.Text = "label4";
             // 
             // sell
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(651, 450);
-            this.Controls.Add(this.txtB_price);
-            this.Controls.Add(this.txtB_quantity);
-            this.Controls.Add(this.txtB_discountR);
-            this.Controls.Add(this.txtB_discountS);
-            this.Controls.Add(this.txtB_priceN);
-            this.Controls.Add(this.txtB_ust);
-            this.Controls.Add(this.txtB_priceB);
-            this.Controls.Add(this.txtB_buyer);
-            this.Controls.Add(this.txtB_product);
+            this.Controls.Add(this.GeldL);
+            this.Controls.Add(this.MengeL);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.ProduktCmbx);
             this.Controls.Add(this.bttn_back);
             this.Controls.Add(this.bttn_save);
-            this.Controls.Add(this.lbl_ust);
-            this.Controls.Add(this.lbl_priceN);
-            this.Controls.Add(this.lbl_buyer);
-            this.Controls.Add(this.lbl_price);
-            this.Controls.Add(this.lbl_totalPrice);
-            this.Controls.Add(this.lbl_discountS);
-            this.Controls.Add(this.lbl_discountR);
-            this.Controls.Add(this.lbl_quantity);
             this.Controls.Add(this.lbl_product);
             this.Controls.Add(this.lbl_headline);
             this.Name = "sell";
             this.Text = "sell";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -269,24 +160,13 @@
         #endregion
         private System.Windows.Forms.Label lbl_headline;
         private System.Windows.Forms.Label lbl_product;
-        private System.Windows.Forms.Label lbl_buyer;
-        private System.Windows.Forms.Label lbl_price;
-        private System.Windows.Forms.Label lbl_totalPrice;
-        private System.Windows.Forms.Label lbl_discountS;
-        private System.Windows.Forms.Label lbl_discountR;
-        private System.Windows.Forms.Label lbl_quantity;
-        private System.Windows.Forms.Label lbl_priceN;
-        private System.Windows.Forms.Label lbl_ust;
         private System.Windows.Forms.Button bttn_save;
         private System.Windows.Forms.Button bttn_back;
-        private System.Windows.Forms.TextBox txtB_product;
-        private System.Windows.Forms.TextBox txtB_buyer;
-        private System.Windows.Forms.TextBox txtB_priceB;
-        private System.Windows.Forms.TextBox txtB_ust;
-        private System.Windows.Forms.TextBox txtB_priceN;
-        private System.Windows.Forms.TextBox txtB_discountS;
-        private System.Windows.Forms.TextBox txtB_discountR;
-        private System.Windows.Forms.TextBox txtB_quantity;
-        private System.Windows.Forms.TextBox txtB_price;
+        private System.Windows.Forms.ComboBox ProduktCmbx;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label MengeL;
+        private System.Windows.Forms.Label GeldL;
     }
 }
