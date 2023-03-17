@@ -34,10 +34,8 @@
             this.bttn_back = new System.Windows.Forms.Button();
             this.ProduktCmbx = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.MengeL = new System.Windows.Forms.Label();
-            this.GeldL = new System.Windows.Forms.Label();
+            this.LabelValue = new System.Windows.Forms.Label();
+            this.LabelMoney = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,51 +96,33 @@
             this.dataGridView1.TabIndex = 27;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // label1
+            // LabelValue
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(520, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
-            this.label1.TabIndex = 28;
-            this.label1.Text = "Menge";
+            this.LabelValue.AutoSize = true;
+            this.LabelValue.Location = new System.Drawing.Point(520, 31);
+            this.LabelValue.Name = "LabelValue";
+            this.LabelValue.Size = new System.Drawing.Size(40, 13);
+            this.LabelValue.TabIndex = 28;
+            this.LabelValue.Text = "Menge";
+            this.LabelValue.Click += new System.EventHandler(this.LabelValue_Click);
             // 
-            // label2
+            // LabelMoney
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(523, 61);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 13);
-            this.label2.TabIndex = 29;
-            this.label2.Text = "Geld";
-            // 
-            // MengeL
-            // 
-            this.MengeL.AutoSize = true;
-            this.MengeL.Location = new System.Drawing.Point(570, 31);
-            this.MengeL.Name = "MengeL";
-            this.MengeL.Size = new System.Drawing.Size(35, 13);
-            this.MengeL.TabIndex = 30;
-            this.MengeL.Text = "label3";
-            // 
-            // GeldL
-            // 
-            this.GeldL.AutoSize = true;
-            this.GeldL.Location = new System.Drawing.Point(570, 61);
-            this.GeldL.Name = "GeldL";
-            this.GeldL.Size = new System.Drawing.Size(35, 13);
-            this.GeldL.TabIndex = 31;
-            this.GeldL.Text = "label4";
+            this.LabelMoney.AutoSize = true;
+            this.LabelMoney.Location = new System.Drawing.Point(523, 61);
+            this.LabelMoney.Name = "LabelMoney";
+            this.LabelMoney.Size = new System.Drawing.Size(29, 13);
+            this.LabelMoney.TabIndex = 29;
+            this.LabelMoney.Text = "Geld";
+            this.LabelMoney.Click += new System.EventHandler(this.LabelMoney_Click);
             // 
             // sell
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(651, 450);
-            this.Controls.Add(this.GeldL);
-            this.Controls.Add(this.MengeL);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.LabelMoney);
+            this.Controls.Add(this.LabelValue);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.ProduktCmbx);
             this.Controls.Add(this.bttn_back);
@@ -164,9 +144,7 @@
         private System.Windows.Forms.Button bttn_back;
         private System.Windows.Forms.ComboBox ProduktCmbx;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label MengeL;
-        private System.Windows.Forms.Label GeldL;
+        private System.Windows.Forms.Label LabelValue;
+        private System.Windows.Forms.Label LabelMoney;
     }
 }

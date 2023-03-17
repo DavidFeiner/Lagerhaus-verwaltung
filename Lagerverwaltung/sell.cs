@@ -15,6 +15,10 @@ namespace Lagerverwaltung
         public sell()
         {
             InitializeComponent();
+            int Value = 5;
+            LabelValue.Text = "Value: " + Value;
+            decimal Money = 50000;
+            LabelMoney.Text = "Money: " + Money + " Euro";
         }
 
         private void bttn_back_Click(object sender, EventArgs e)
@@ -40,6 +44,18 @@ namespace Lagerverwaltung
         private void ProduktCmbx_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void LabelValue_Click(object sender, EventArgs e)
+        {
+            
+            
+
+        }
+
+        private void LabelMoney_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }
