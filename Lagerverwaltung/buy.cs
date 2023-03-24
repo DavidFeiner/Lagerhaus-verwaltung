@@ -20,6 +20,8 @@ namespace Lagerverwaltung
             InitializeComponent();
             DataTable dataTable = cmc.DataOverview(dgV_buy);
             this.table = dataTable;
+
+            cmc.ComboBox(cbB_product);
         }
 
         

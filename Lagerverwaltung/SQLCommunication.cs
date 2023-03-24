@@ -200,5 +200,42 @@ namespace Lagerverwaltung
 
             }
         }
+        public void ComboBox(ComboBox cbB_product)
+        {
+            try
+            {
+                //put products into ComboBox
+                try
+                {
+                    con.Open();
+                    //cmd.CommandText = 
+                    //DataTable t = con.GetSchema("Tables");
+                    //foreach (DataRow row in t.Rows)
+                    //{
+                    //    cbB_product.Items.Add(row[2]);
+                    //}
+                    con.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    if (con.State != ConnectionState.Closed)
+                        con.Close();
+                }
+
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                if (con.State != ConnectionState.Closed)
+                {
+                    con.Close();
+                }
+
+            }
+        }
     }
 }
