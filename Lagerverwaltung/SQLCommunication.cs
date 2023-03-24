@@ -41,6 +41,7 @@ namespace Lagerverwaltung
                     cmd.CommandText = "create Table products([product] nvarchar(50),[buyer] nvarchar(50), [quantity] integer, [supplier] nvarchar(50),  [discountS] decimal, [discountR] decimal, [unitPrice] decimal, [price] decimal, [totalPrice] decimal, [UST] decimal )";
                     cmd.ExecuteNonQuery();
 
+
                     con.Close();
 
 
@@ -55,9 +56,9 @@ namespace Lagerverwaltung
             }
             else
             {
-               
+
                 con.ConnectionString += "database = " + nameDB + "; ";
-               
+
             }
 
         }
@@ -72,7 +73,7 @@ namespace Lagerverwaltung
                     connection.Open();
                     return (command.ExecuteScalar() != DBNull.Value);
                     //ExecuteScalar schaut ob erste Spalte - erste Zeile null ist
-                    
+
                 }
             }
         }
@@ -85,7 +86,7 @@ namespace Lagerverwaltung
             {
                 con.Open();
                 cmd.CommandText = "select * from login where username = '" + username + "' and password = '" + password + "'";
-               // cmd.CommandText = "select * from login where username = '" + username + "' and password = '" + password + "';";
+                // cmd.CommandText = "select * from login where username = '" + username + "' and password = '" + password + "';";
                 //cmd.CommandText = "select * from login where username = 'admin' and password = 'admin';";
                 cmd.ExecuteNonQuery();
 
@@ -104,7 +105,7 @@ namespace Lagerverwaltung
                 con.Close();
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 if (con.State != ConnectionState.Closed)
@@ -140,7 +141,8 @@ namespace Lagerverwaltung
                 con.Close();
                 reader.Close();
 
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 if (con.State != ConnectionState.Closed)
@@ -170,6 +172,34 @@ namespace Lagerverwaltung
                     con.Close();
             }
             return dataTable;
+        }
+        public void Load(DataTable table)
+        {
+            SqlBulkCopy sql = new SqlBulkCopy(con);
+
+            try
+            {
+                //delete from table so that we can insert all data at ones
+                con.Open();
+                cmd.CommandText = "delete from products";
+                cmd.ExecuteNonQuery();
+
+                //chooses in which table the data will be saved
+                sql.DestinationTableName = "products";
+                //it writes the data into dataTable 
+                sql.WriteToServer(table);
+                MessageBox.Show("Daten wurden gespeichert!");
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                if (con.State != ConnectionState.Closed)
+                {
+                    con.Close();
+                }
+
+            }
         }
     }
 }

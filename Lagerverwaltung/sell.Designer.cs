@@ -131,6 +131,7 @@
             this.Controls.Add(this.lbl_headline);
             this.Name = "sell";
             this.Text = "sell";
+            this.Load += new System.EventHandler(this.sell_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

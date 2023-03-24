@@ -13,10 +13,12 @@ namespace Lagerverwaltung
     public partial class buy : Form
     {
         SQLCommunication cmc = new SQLCommunication();
+        DataTable table;
         public buy()
         {
             InitializeComponent();
             DataTable dataTable = cmc.DataOverview(dgV_buy);
+            this.table = dataTable;
         }
 
         
@@ -29,7 +31,7 @@ namespace Lagerverwaltung
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            cmc.Load(table);
         }
     }
 }
