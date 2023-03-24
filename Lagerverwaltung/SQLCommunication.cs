@@ -41,11 +41,7 @@ namespace Lagerverwaltung
                     cmd.CommandText = "create Table products([product] nvarchar(50),[buyer] nvarchar(50), [quantity] integer, [supplier] nvarchar(50),  [discountS] decimal, [discountR] decimal, [unitPrice] decimal, [price] decimal, [totalPrice] decimal, [UST] decimal )";
                     cmd.ExecuteNonQuery();
 
-
                     con.Close();
-
-
-
                 }
                 catch (Exception ex)
                 {
