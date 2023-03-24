@@ -208,7 +208,10 @@ namespace Lagerverwaltung
                 try
                 {
                     con.Open();
-                    //cmd.CommandText = 
+                    cmd.CommandText = "select product from products";
+                    cmd.ExecuteNonQuery();
+                    cbB_product.Items.Add(cmd);
+                    cmd.ExecuteNonQuery();
                     //DataTable t = con.GetSchema("Tables");
                     //foreach (DataRow row in t.Rows)
                     //{
