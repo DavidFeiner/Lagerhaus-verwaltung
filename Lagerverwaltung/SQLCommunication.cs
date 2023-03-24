@@ -40,6 +40,7 @@ namespace Lagerverwaltung
                     cmd.ExecuteNonQuery();
                     cmd.CommandText = "create Table products([product] nvarchar(50),[buyer] nvarchar(50), [quantity] integer, [supplier] nvarchar(50),  [discountS] decimal, [discountR] decimal, [unitPrice] decimal, [price] decimal, [totalPrice] decimal, [UST] decimal )";
                     cmd.ExecuteNonQuery();
+                    
 
                     con.Close();
 
@@ -170,6 +171,34 @@ namespace Lagerverwaltung
                     con.Close();
             }
             return dataTable;
+        }
+        public void Load(DataTable table)
+        {
+            SqlBulkCopy sql = new SqlBulkCopy(con);
+            
+            try
+            {
+                //delete from table so that we can insert all data at ones
+                con.Open();
+                cmd.CommandText = "delete from products";
+                cmd.ExecuteNonQuery();
+
+                //chooses in which table the data will be saved
+                sql.DestinationTableName = "products";
+                //it writes the data into dataTable 
+                sql.WriteToServer(table);
+                MessageBox.Show("Daten wurden gespeichert!");
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                if (con.State != ConnectionState.Closed)
+                {
+                    con.Close();
+                }
+
+            }
         }
     }
 }

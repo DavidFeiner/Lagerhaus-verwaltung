@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 
 namespace Lagerverwaltung
@@ -13,10 +14,12 @@ namespace Lagerverwaltung
     public partial class buy : Form
     {
         SQLCommunication cmc = new SQLCommunication();
+        DataTable table;
         public buy()
         {
             InitializeComponent();
             DataTable dataTable = cmc.DataOverview(dgV_buy);
+            this.table = dataTable;
         }
 
         
@@ -25,6 +28,11 @@ namespace Lagerverwaltung
             this.Hide();
             mainmenu mainmenu = new mainmenu();
             mainmenu.ShowDialog();
+        }
+
+        private void bttn_save_Click(object sender, EventArgs e)
+        {
+            cmc.Load(table);
         }
     }
 }
