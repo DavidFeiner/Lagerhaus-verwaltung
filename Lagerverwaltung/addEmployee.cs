@@ -13,7 +13,7 @@ namespace Lagerverwaltung
     public partial class addEmployee : Form
     {
 
-        string name, surname, username, password;
+        string name, surname, username, password, password2;
         SQLCommunication sql = new SQLCommunication();
         public addEmployee()
         {
@@ -36,11 +36,15 @@ namespace Lagerverwaltung
             surname = Convert.ToString(txtB_password.Text);
             username = Convert.ToString(txtB_username.Text);
             password = Convert.ToString(txtB_password.Text);
+            password2 = Convert.ToString(txtB_password2.Text);
+            
 
 
-            if(password.Equals(txtB_password2))
+            if(password.Equals(password2))
             {
                 sql.AddEmployee(name, surname, username, password);
+                MessageBox.Show("Mitarbeiter wurde gespeichert!");
+                MessageBox.Show("Daten lauten: \nName: " + name + "\nNachname: " + surname + "\nBenutzername: " + username + "\nPassword: " + password);
             }
 
             

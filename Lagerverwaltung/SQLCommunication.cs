@@ -17,6 +17,7 @@ namespace Lagerverwaltung
         static SqlConnection con = new SqlConnection(connectionString);
         SqlCommand cmd = new SqlCommand(" ", con);
 
+        #region CreateDatabase
         public void CreateDatabase()
         {
             string nameDB = "MayrhoferFeiner";
@@ -40,7 +41,7 @@ namespace Lagerverwaltung
                     cmd.ExecuteNonQuery();
                     cmd.CommandText = "create Table products([product] nvarchar(50),[buyer] nvarchar(50), [quantity] integer, [supplier] nvarchar(50),  [discountS] decimal, [discountR] decimal, [unitPrice] decimal, [price] decimal, [totalPrice] decimal, [UST] decimal )";
                     cmd.ExecuteNonQuery();
-                    
+
 
                     con.Close();
 
@@ -56,12 +57,13 @@ namespace Lagerverwaltung
             }
             else
             {
-               
+
                 con.ConnectionString += "database = " + nameDB + "; ";
-               
+
             }
 
         }
+
 
         //checks if database exists
         public static bool CheckDatabaseExists(string connectionString, string databaseName)
@@ -73,11 +75,14 @@ namespace Lagerverwaltung
                     connection.Open();
                     return (command.ExecuteScalar() != DBNull.Value);
                     //ExecuteScalar schaut ob erste Spalte - erste Zeile null ist
-                    
+
                 }
             }
         }
 
+        #endregion
+
+        #region CheckLogin
         public bool CheckLogin(string username, string password)
         {
             bool correctLogin = false;
@@ -85,70 +90,69 @@ namespace Lagerverwaltung
             try
             {
                 con.Open();
-                cmd.CommandText = "select * from login where username = '" + username + "' and password = '" + password + "'";
-               // cmd.CommandText = "select * from login where username = '" + username + "' and password = '" + password + "';";
-                //cmd.CommandText = "select * from login where username = 'admin' and password = 'admin';";
+                cmd.CommandText = "select * from login where username = '" + username + "' and password = '" + password + "';";
                 cmd.ExecuteNonQuery();
 
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
                     correctLogin = true;
-                    reader.Close();
-                    con.Close();
-
                 }
                 else
                 {
                     correctLogin = false;
                 }
-                con.Close();
+                reader.Close();
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 if (con.State != ConnectionState.Closed)
                     con.Close();
             }
+            con.Close();
 
             return correctLogin;
         }
+        #endregion
 
+        #region AddEmployee
         public void AddEmployee(string name, string surname, string username, string password)
         {
+           //doesnt work :(
             try
             {
                 con.Open();
-                cmd.CommandText = "select * from login where username = 'admin' and password = 'admin'; ";
+                cmd.CommandText = "select * from login where username = '" + username + "' and password = '" + password + "';";
                 cmd.ExecuteNonQuery();
 
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
                     MessageBox.Show("Benutzername existiert schon. Suchen Sie einen anderen aus: ");
-                    reader.Close();
-                    con.Close();
-
                 }
                 else
                 {
-                    cmd.CommandText = "instert into login (name, surname, username, password) values ('" + name +
+                    cmd.CommandText = "insert into login (name, surname, username, password) values ('" + name +
                       "', '" + surname + "','" + username + "' , '" + password + "');";
-                    cmd.ExecuteNonQuery();
-                    con.Close();
+                    cmd.ExecuteNonQuery(); 
                 }
-                con.Close();
                 reader.Close();
 
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 if (con.State != ConnectionState.Closed)
                     con.Close();
             }
+            con.Close();
         }
 
+        #endregion
+
+        #region DataOverview
         public DataTable DataOverview(DataGridView dataOverview)
         {
             DataTable dataTable = new DataTable();
@@ -172,10 +176,13 @@ namespace Lagerverwaltung
             }
             return dataTable;
         }
+        #endregion
+
+        #region LoadDGV
         public void Load(DataTable table)
         {
             SqlBulkCopy sql = new SqlBulkCopy(con);
-            
+
             try
             {
                 //delete from table so that we can insert all data at ones
@@ -200,15 +207,20 @@ namespace Lagerverwaltung
 
             }
         }
+        #endregion
+
+        #region ComboBoxProducts
         public void ComboBox(ComboBox cbB_product)
         {
-            try
-            {
+            
                 //put products into ComboBox
                 try
-                {
+                {   
                     con.Open();
-                    //cmd.CommandText = 
+                    cmd.CommandText = "select product from products";
+                    cmd.ExecuteNonQuery();
+                    cbB_product.Items.Add(cmd.CommandText = "select product from products") ;
+                    cmd.ExecuteNonQuery();
                     //DataTable t = con.GetSchema("Tables");
                     //foreach (DataRow row in t.Rows)
                     //{
@@ -224,18 +236,10 @@ namespace Lagerverwaltung
                         con.Close();
                 }
 
+          
 
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                if (con.State != ConnectionState.Closed)
-                {
-                    con.Close();
-                }
 
-            }
         }
+        #endregion 
     }
 }
