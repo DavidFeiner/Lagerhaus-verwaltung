@@ -120,7 +120,7 @@ namespace Lagerverwaltung
         #region AddEmployee
         public void AddEmployee(string name, string surname, string username, string password)
         {
-           //doesnt work :(
+
             try
             {
                 con.Open();
@@ -138,6 +138,7 @@ namespace Lagerverwaltung
                       "', '" + surname + "','" + username + "' , '" + password + "');";
                     cmd.ExecuteNonQuery(); 
                 }
+                
                 reader.Close();
 
             }
