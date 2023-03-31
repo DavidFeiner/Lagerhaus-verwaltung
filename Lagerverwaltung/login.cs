@@ -19,8 +19,7 @@ namespace Lagerverwaltung
         {
             InitializeComponent();
             sql.CreateDatabase();
-            username = Convert.ToString(txtB_username.Text);
-            password = Convert.ToString(txtB_password.Text);
+           
         }
 
        
@@ -32,6 +31,8 @@ namespace Lagerverwaltung
 
         private void bttn_accept_Click(object sender, EventArgs e)
         {
+            username = Convert.ToString(txtB_username.Text);
+            password = Convert.ToString(txtB_password.Text);
             bool correct =  sql.CheckLogin(username, password);
 
             if(correct)
@@ -43,10 +44,10 @@ namespace Lagerverwaltung
             else
             {
                 MessageBox.Show("Username or Password are false!");
-
-                mainmenu mainmenu = new mainmenu();
-                this.Hide();
-                mainmenu.ShowDialog();
+                txtB_username.Clear();
+                txtB_password.Clear();
+                txtB_username.Focus();
+               
             }
             
            
