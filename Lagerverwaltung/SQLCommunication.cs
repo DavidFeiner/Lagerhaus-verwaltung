@@ -97,10 +97,12 @@ namespace Lagerverwaltung
                 if (reader.HasRows)
                 {
                     correctLogin = true;
+                    reader.Close();
                 }
                 else
                 {
                     correctLogin = false;
+                    reader.Close();
                 }
                 reader.Close();
 
@@ -111,6 +113,7 @@ namespace Lagerverwaltung
                 if (con.State != ConnectionState.Closed)
                     con.Close();
             }
+            
             con.Close();
 
             return correctLogin;
@@ -126,7 +129,7 @@ namespace Lagerverwaltung
                 con.Open();
                 cmd.CommandText = "select * from login where username = '" + username + "' and password = '" + password + "';";
                 cmd.ExecuteNonQuery();
-
+                
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -144,6 +147,7 @@ namespace Lagerverwaltung
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.ToString());
                 if (con.State != ConnectionState.Closed)
                     con.Close();
             }
