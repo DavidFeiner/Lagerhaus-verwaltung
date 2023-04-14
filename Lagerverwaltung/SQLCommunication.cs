@@ -41,6 +41,8 @@ namespace Lagerverwaltung
                     cmd.ExecuteNonQuery();
                     cmd.CommandText = "create Table products([product] nvarchar(50),[buyer] nvarchar(50), [quantity] integer, [supplier] nvarchar(50),  [discountS] decimal, [discountR] decimal, [unitPrice] decimal, [price] decimal, [totalPrice] decimal, [UST] decimal )";
                     cmd.ExecuteNonQuery();
+                    cmd.CommandText = "insert into products(product, buyer, quantity, supplier, discountS, discountR, unitPrice, totalPrice, UST) values ('Pflanze', 'Customer', 0 , 'PlantGMBH' , '', '', 29.99 ,  unitPrice * products, 20)";
+                    cmd.ExecuteNonQuery();
 
 
                     con.Close();

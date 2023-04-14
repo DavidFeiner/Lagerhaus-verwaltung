@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Lagerverwaltung
 {
@@ -15,13 +17,15 @@ namespace Lagerverwaltung
     {
         SQLCommunication cmc = new SQLCommunication();
         DataTable table;
+        SqlConnection cn;
+        SqlCommand cmd;
+        SqlDataReader dr;
         public buy()
         {
             InitializeComponent();
             DataTable dataTable = cmc.DataOverview(dgV_buy);
             this.table = dataTable;
 
-            cmc.ComboBox(cbB_product);
         }
 
         
@@ -36,5 +40,34 @@ namespace Lagerverwaltung
         {
             cmc.Load(table);
         }
+        //public void cbB_product_Load(object sender, EventArgs e )
+        //{
+
+        //    cn = new SqlConnection("server = (localdb)\\MSSQLLocalDB; integrated security = true; server = MayrhoferFeiner;");
+        //    cn.Open();
+
+        //    BindData();
+        //}
+        //public void BindData()
+        //{
+        //    cmd = new SqlCommand("select product from products", cn);
+        //    dr = cmd.ExecuteReader();
+        //    while (dr.Read())
+        //    {
+        //        cbB_product.Items.Add(dr[0].ToString());
+        //    }
+        //    dr.Close();
+        //}
+
+        //private void cbB_product_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    cn = new SqlConnection("server = (localdb)\\MSSQLLocalDB; integrated security = true; server = MayrhoferFeiner;");
+        //    cn.Open();
+
+        //    BindData();
+        //}
     }
+       
+           
+    
 }
