@@ -64,6 +64,8 @@ namespace Lagerverwaltung
         }
 
         private void sell_Load(object sender, EventArgs e)
-        { }
+        { 
+
+        }
     }
 }

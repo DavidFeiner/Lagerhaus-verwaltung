@@ -47,9 +47,6 @@ namespace Lagerverwaltung
                 MessageBox.Show("Daten lauten: \nName: " + name + "\nNachname: " + surname + "\nBenutzername: " + username + "\nPassword: " + password);
             }
 
-            
-
-
         }
     }
 }
