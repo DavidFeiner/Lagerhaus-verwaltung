@@ -41,6 +41,28 @@ namespace Lagerverwaltung
                     cmd.ExecuteNonQuery();
                     cmd.CommandText = "create Table products([product] nvarchar(50),[buyer] nvarchar(50), [quantity] integer, [supplier] nvarchar(50),  [discountS] decimal, [discountR] decimal, [unitPrice] decimal, [price] decimal, [totalPrice] decimal, [UST] decimal )";
                     cmd.ExecuteNonQuery();
+                    //products
+                    cmd.CommandText = "insert into products(product, buyer, quantity, supplier, discountS, discountR, unitPrice, totalPrice, UST) values ('Pflanze', 'Customer', 0 , 'PlantGMBH' , '', '', 29.99 , unitPrice "  & * & "quantity , 20)";
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = "insert into products(product, buyer, quantity, supplier, discountS, discountR, unitPrice, totalPrice, UST) values ('Rasenmäher', 'Customer', 0 , 'lawnMowerGesbr' , '', '', 149.99 ," + unitPrice * quantity + ", 20)";
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = "insert into products(product, buyer, quantity, supplier, discountS, discountR, unitPrice, totalPrice, UST) values ('Wandfarben', 'Customer', 0 , 'WondPainterAG' , '', '', 39.99 ," + unitPrice * quantity + ", 20)";
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = "insert into products(product, buyer, quantity, supplier, discountS, discountR, unitPrice, totalPrice, UST) values ('SuperDuper Griller', 'Customer', 0 , 'explodingGmbH' , '', '', 329.99 ," + unitPrice * quantity + ", 20)";
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = "insert into products(product, buyer, quantity, supplier, discountS, discountR, unitPrice, totalPrice, UST) values ('Spring Brunnen', 'Customer', 0 , 'wetOG' , '', '', 409.99 ," + unitPrice * quantity + ", 20)";
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = "insert into products(product, buyer, quantity, supplier, discountS, discountR, unitPrice, totalPrice, UST) values ('Schaufel', 'Customer', 0 , 'Dirty Dore EG' , '', '', 49.99 ," + unitPrice * quantity + ", 20)";
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = "insert into products(product, buyer, quantity, supplier, discountS, discountR, unitPrice, totalPrice, UST) values ('Nemo Fisch', 'Customer', 0 , 'sloppy GmbH' , '', '', 10.98 ," + unitPrice * quantity + ", 20)";
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = "insert into products(product, buyer, quantity, supplier, discountS, discountR, unitPrice, totalPrice, UST) values ('Hamster', 'Customer', 0 , 'Cute-Slay-Smash OG' , '', '', 23.99 ," + unitPrice * quantity + ", 20)";
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = "insert into products(product, buyer, quantity, supplier, discountS, discountR, unitPrice, totalPrice, UST) values ('Plüschtier Dino', 'Customer', 0 , 'IKEA' , '', '', 39.99 ," + unitPrice * quantity + ", 20)";
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = "insert into products(product, buyer, quantity, supplier, discountS, discountR, unitPrice, totalPrice, UST) values ('Eis', 'Customer', 0 , 'IceIceBaby EG' , '', '', 3.99," + unitPrice * quantity + ", 20)";
+                    cmd.ExecuteNonQuery();
+
 
 
                     con.Close();
@@ -97,10 +119,12 @@ namespace Lagerverwaltung
                 if (reader.HasRows)
                 {
                     correctLogin = true;
+                    reader.Close();
                 }
                 else
                 {
                     correctLogin = false;
+                    reader.Close();
                 }
                 reader.Close();
 
@@ -111,6 +135,7 @@ namespace Lagerverwaltung
                 if (con.State != ConnectionState.Closed)
                     con.Close();
             }
+            
             con.Close();
 
             return correctLogin;
@@ -126,7 +151,7 @@ namespace Lagerverwaltung
                 con.Open();
                 cmd.CommandText = "select * from login where username = '" + username + "' and password = '" + password + "';";
                 cmd.ExecuteNonQuery();
-
+                
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -144,6 +169,7 @@ namespace Lagerverwaltung
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.ToString());
                 if (con.State != ConnectionState.Closed)
                     con.Close();
             }
