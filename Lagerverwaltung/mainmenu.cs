@@ -43,7 +43,7 @@ namespace Lagerverwaltung
 
         private void bttn_buy_Click(object sender, EventArgs e)
         {
-            buy buy = new buy();
+            buy2 buy = new buy2();
             this.Hide();
             buy.ShowDialog();
         }
