@@ -43,11 +43,14 @@ namespace Lagerverwaltung
             }
             else
             {
-                MessageBox.Show("Username or Password are false!");
+                //MessageBox.Show("Username or Password are false!");
                 txtB_username.Clear();
                 txtB_password.Clear();
                 txtB_username.Focus();
-               
+                mainmenu mainmenu = new mainmenu();
+                this.Hide();
+                mainmenu.ShowDialog();
+
             }
             
            

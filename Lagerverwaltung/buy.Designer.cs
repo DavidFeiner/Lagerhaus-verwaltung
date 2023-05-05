@@ -51,7 +51,7 @@
             // 
             // bttn_save
             // 
-            this.bttn_save.Location = new System.Drawing.Point(538, 404);
+            this.bttn_save.Location = new System.Drawing.Point(842, 574);
             this.bttn_save.Name = "bttn_save";
             this.bttn_save.Size = new System.Drawing.Size(75, 23);
             this.bttn_save.TabIndex = 16;
@@ -61,7 +61,7 @@
             // 
             // bttn_back
             // 
-            this.bttn_back.Location = new System.Drawing.Point(27, 404);
+            this.bttn_back.Location = new System.Drawing.Point(12, 563);
             this.bttn_back.Name = "bttn_back";
             this.bttn_back.Size = new System.Drawing.Size(75, 23);
             this.bttn_back.TabIndex = 17;
@@ -89,15 +89,15 @@
             // dgV_buy
             // 
             this.dgV_buy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgV_buy.Location = new System.Drawing.Point(27, 129);
+            this.dgV_buy.Location = new System.Drawing.Point(12, 125);
             this.dgV_buy.Name = "dgV_buy";
-            this.dgV_buy.Size = new System.Drawing.Size(586, 260);
+            this.dgV_buy.Size = new System.Drawing.Size(905, 398);
             this.dgV_buy.TabIndex = 20;
             // 
             // lbl_amount
             // 
             this.lbl_amount.AutoSize = true;
-            this.lbl_amount.Location = new System.Drawing.Point(406, 31);
+            this.lbl_amount.Location = new System.Drawing.Point(598, 63);
             this.lbl_amount.Name = "lbl_amount";
             this.lbl_amount.Size = new System.Drawing.Size(103, 13);
             this.lbl_amount.TabIndex = 21;
@@ -106,7 +106,7 @@
             // lbl_money
             // 
             this.lbl_money.AutoSize = true;
-            this.lbl_money.Location = new System.Drawing.Point(406, 55);
+            this.lbl_money.Location = new System.Drawing.Point(598, 85);
             this.lbl_money.Name = "lbl_money";
             this.lbl_money.Size = new System.Drawing.Size(32, 13);
             this.lbl_money.TabIndex = 22;
@@ -116,7 +116,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(651, 450);
+            this.ClientSize = new System.Drawing.Size(975, 614);
             this.Controls.Add(this.lbl_money);
             this.Controls.Add(this.lbl_amount);
             this.Controls.Add(this.dgV_buy);

@@ -61,6 +61,12 @@
     <Compile Include="buy.Designer.cs">
       <DependentUpon>buy.cs</DependentUpon>
     </Compile>
+    <Compile Include="buy2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="buy2.Designer.cs">
+      <DependentUpon>buy2.cs</DependentUpon>
+    </Compile>
     <Compile Include="login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,11 +100,20 @@
     <Compile Include="storage.Designer.cs">
       <DependentUpon>storage.cs</DependentUpon>
     </Compile>
+    <Compile Include="supplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="supplier.Designer.cs">
+      <DependentUpon>supplier.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="addEmployee.resx">
       <DependentUpon>addEmployee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="buy.resx">
       <DependentUpon>buy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="buy2.resx">
+      <DependentUpon>buy2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="login.resx">
       <DependentUpon>login.cs</DependentUpon>
@@ -123,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="storage.resx">
       <DependentUpon>storage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="supplier.resx">
+      <DependentUpon>supplier.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
