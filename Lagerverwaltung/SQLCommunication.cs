@@ -23,7 +23,7 @@ namespace Lagerverwaltung
         #region CreateDatabase
         public void CreateDatabase()
         {
-            string nameDB = "MayrhoferFeiner";
+            string nameDB = "MayrhoferFeinerr";
 
             //check if Database exists and if not create database and table 
             bool databaseExists = CheckDatabaseExists(connectionString, nameDB);
@@ -47,16 +47,16 @@ namespace Lagerverwaltung
 
 
                     //insert
-                    cmd.CommandText = "insert into suppliers(name, id, discountS, discountR, deliveryTime, price, ust) " +
-                        "values ('D', 1, 2, 3, 'dfjdkj', 3, 3);";
+                    cmd.CommandText = "insert into suppliers(name, id, discountS, discountR, deliveryTime, price, ust, productID) " +
+                        "values ('D', 1, 2, 3, 'dfjdkj', 3, 3, 1);";
                     cmd.ExecuteNonQuery();
                     cmd.CommandText = "insert into login(name, surname, username, password) values ('admin', 'admin', 'admin', 'admin')";
                     cmd.ExecuteNonQuery();
                     cmd.CommandText = "insert into products(product, productID, buyer, quantity, supplierID) values " +
                         "('Pflanze',1,  'Customer', 20, 1)";
                     cmd.ExecuteNonQuery();
-                    cmd.CommandText = "update products set totalPrice=quantity*unitPrice;";
-                    cmd.ExecuteNonQuery();
+                    //cmd.CommandText = "update products set totalPrice=quantity*unitPrice;";
+                    //cmd.ExecuteNonQuery();
                     //cmd.CommandText = "insert into products(product, buyer, quantity, supplier, discountS, discountR, unitPrice, totalPrice, UST) values ('Rasenmäher', 'Customer', 0 , 'lawnMowerGesbr' , '', '', 149.99 ," + unitPrice * quantity + ", 20)";
                     //cmd.ExecuteNonQuery();
                     //cmd.CommandText = "insert into products(product, buyer, quantity, supplier, discountS, discountR, unitPrice, totalPrice, UST) values ('Wandfarben', 'Customer', 0 , 'WondPainterAG' , '', '', 39.99 ," + unitPrice * quantity + ", 20)";
@@ -323,40 +323,45 @@ namespace Lagerverwaltung
         public void ComboBoxSupplier(ComboBox supplier)
         {
             //sind hier noch nicht fertig, lieferanten sollen nur angzeigt werden wenn sie zum produkt passen 
-            int ProductID = 0;
+            List <int > list = new List<int>();
+            int ProductID = 1;
+            
+            try { 
+                con.Open();
+                cmd.CommandText = "select productID from suppliers;";
+                //cmd.ExecuteNonQuery();
+                SqlDataReader reader = cmd.ExecuteReader();
 
-            con.Open();
-            cmd.CommandText = "select productID from suppliers;";
-            cmd.ExecuteNonQuery();
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            int count = 1;
-            if (reader.HasRows)
-            {
-                while (reader.Read())
+                int count = 1;
+                if (reader.HasRows)
                 {
-                    ProductID = reader.GetInt32(0);
-                    
+                    while (reader.Read())
+                    {
+                        ProductID = reader.GetInt32(0);
+                        list.Add(ProductID);
+                        
+
+                    }
+                    reader.Close();
                 }
+
                 reader.Close();
-            }
 
-            reader.Close();
-            try
-            {
 
-                cmd.CommandText = "select productID from products where product = " + productsCB.ToString() + ";";
+                cmd.CommandText = "select productID from products;";
+                //cmd.CommandText = "select productID form products where product = " + productsCB.SelectedItem + ";";
                 cmd.ExecuteNonQuery();
 
                 SqlDataReader read = cmd.ExecuteReader();
-
+                int num = 1;
                 if (read.HasRows)
                 {
                     while (read.Read())
                     {
-                        if (ProductID.Equals(read.GetInt32(0)))
+                        if (list[num].Equals(read.GetInt32(0)))
                         {
                             supplier.Items.Add(read.GetString(0));
+                            num++;
                         }
                         else
                         {
