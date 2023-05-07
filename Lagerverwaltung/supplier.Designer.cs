@@ -74,11 +74,11 @@
             // lbl_info
             // 
             this.lbl_info.AutoSize = true;
-            this.lbl_info.Location = new System.Drawing.Point(32, 247);
+            this.lbl_info.Location = new System.Drawing.Point(32, 265);
             this.lbl_info.Name = "lbl_info";
-            this.lbl_info.Size = new System.Drawing.Size(52, 13);
+            this.lbl_info.Size = new System.Drawing.Size(124, 13);
             this.lbl_info.TabIndex = 3;
-            this.lbl_info.Text = "Anderes: ";
+            this.lbl_info.Text = "Genauere Informationen:";
             // 
             // lbl_priceOne
             // 

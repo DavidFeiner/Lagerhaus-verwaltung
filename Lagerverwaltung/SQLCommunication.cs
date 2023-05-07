@@ -18,12 +18,12 @@ namespace Lagerverwaltung
         static string connectionString = "server = (localdb)\\MSSQLLocalDB; integrated security = true; ";
         static SqlConnection con = new SqlConnection(connectionString);
         SqlCommand cmd = new SqlCommand(" ", con);
-        ComboBox productsCB;
+        
 
         #region CreateDatabase
         public void CreateDatabase()
         {
-            string nameDB = "MayrhoferFeinerr";
+            string nameDB = "MayrhoferFeiner";
 
             //check if Database exists and if not create database and table 
             bool databaseExists = CheckDatabaseExists(connectionString, nameDB);
@@ -40,20 +40,20 @@ namespace Lagerverwaltung
                     con.Open();
                     cmd.CommandText = "create Table login([name] nvarchar(50), [surname] nvarchar(50), [username] nvarchar(50), [password] nvarchar(50))";
                     cmd.ExecuteNonQuery();
-                    cmd.CommandText = "create Table products([product] nvarchar(50),[productID] integer, [buyer] nvarchar(50), [quantity] integer, [supplierID] integer )";
+                    cmd.CommandText = "create Table products([product] nvarchar(50),[productID] integer, [quantity] integer, [info] nvarchar(50))";
                     cmd.ExecuteNonQuery();
-                    cmd.CommandText = "create Table suppliers([name] nvarchar(50),[id] integer primary key,[discountS] decimal, [discountR] decimal, [deliveryTime] nvarchar(50), [price] decimal, [ust] integer, [productID] integer) ";
+                    cmd.CommandText = "create Table suppliers([name] nvarchar(50),[id] integer primary key,[discountS] decimal, [discountR] decimal, [info] nvarchar(50), [price] decimal, [ust] integer, [productID] integer) ";
                     cmd.ExecuteNonQuery();
 
 
                     //insert
-                    cmd.CommandText = "insert into suppliers(name, id, discountS, discountR, deliveryTime, price, ust, productID) " +
+                    cmd.CommandText = "insert into suppliers(name, id, discountS, discountR, info, price, ust, productID) " +
                         "values ('D', 1, 2, 3, 'dfjdkj', 3, 3, 1);";
                     cmd.ExecuteNonQuery();
                     cmd.CommandText = "insert into login(name, surname, username, password) values ('admin', 'admin', 'admin', 'admin')";
                     cmd.ExecuteNonQuery();
-                    cmd.CommandText = "insert into products(product, productID, buyer, quantity, supplierID) values " +
-                        "('Pflanze',1,  'Customer', 20, 1)";
+                    cmd.CommandText = "insert into products(product, productID, quantity, info) values " +
+                        "('Pflanze',1, 20, 'Hallo Hallo')";
                     cmd.ExecuteNonQuery();
                     //cmd.CommandText = "update products set totalPrice=quantity*unitPrice;";
                     //cmd.ExecuteNonQuery();
@@ -281,9 +281,8 @@ namespace Lagerverwaltung
         #region ComboBoxProducts
         public void ComboBox(ComboBox cbB_product)
         {
-            
-                //put products into ComboBox
-                try
+            cbB_product.Items.Clear();
+            try
                 {
                 
                     con.Open();
@@ -297,13 +296,13 @@ namespace Lagerverwaltung
                     while (reader.Read())
                     {
                         cbB_product.Items.Add(reader.GetString(0));
-                        cbB_product = productsCB;
+                        //cbB_product = productsCB;
                         count++;
                     }
                     reader.Close();
                 }
 
-                reader.Close();
+                    reader.Close();
                     con.Close();
 
                 
@@ -318,29 +317,305 @@ namespace Lagerverwaltung
                 }
 
         }
-        #endregion 
+        #endregion
 
-        public void ComboBoxSupplier(ComboBox supplier)
+        #region existingData
+        public int ExistingQuantity(string product)
         {
-            //sind hier noch nicht fertig, lieferanten sollen nur angzeigt werden wenn sie zum produkt passen 
-            List <int > list = new List<int>();
-            int ProductID = 1;
-            
-            try { 
+            int num = 0;
+            try
+            {
                 con.Open();
-                cmd.CommandText = "select productID from suppliers;";
-                //cmd.ExecuteNonQuery();
+                cmd.CommandText = "select quantity from products where product = '" + product +"';";
                 SqlDataReader reader = cmd.ExecuteReader();
 
-                int count = 1;
+                if(reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        num = reader.GetInt32(0);
+                    }
+                }
+                con.Close();
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.ToString());
+                if (con.State != ConnectionState.Closed)
+                    con.Close();
+            }
+            return num;
+        }
+        public string InfoProduct(string product)
+        {
+            string info = "";
+            try
+            {
+                con.Open();
+                cmd.CommandText = "select info from products where product = '" + product + "';";
+                SqlDataReader reader = cmd.ExecuteReader();
+
                 if (reader.HasRows)
                 {
                     while (reader.Read())
                     {
-                        ProductID = reader.GetInt32(0);
-                        list.Add(ProductID);
-                        
+                        info = reader.GetString(0);
+                    }
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.ToString());
+                if (con.State != ConnectionState.Closed)
+                    con.Close();
+            }
+            return info;
+        }
+        public string InfoSupplier(string supplier)
+        {
+            string info = "";
+            try
+            {
+                con.Open();
+                cmd.CommandText = "select info from suppliers where name = '" + supplier + "';";
+                SqlDataReader reader = cmd.ExecuteReader();
 
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        info = reader.GetString(0);
+                    }
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.ToString());
+                if (con.State != ConnectionState.Closed)
+                    con.Close();
+            }
+            return info;
+        }
+
+        public int UST(string supplier)
+        {
+            int ust = 0;
+            try
+            {
+                con.Open();
+                cmd.CommandText = "select ust from suppliers where name = '" + supplier + "';";
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        ust = reader.GetInt32(0);
+                    }
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.ToString());
+                if (con.State != ConnectionState.Closed)
+                    con.Close();
+            }
+            return ust;
+        }
+
+        public decimal DiscountSkonto(string supplier)
+        {
+            decimal discountS = 0;
+            try
+            {
+                con.Open();
+                cmd.CommandText = "select discountS from suppliers where name = '" + supplier + "';";
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        discountS = reader.GetDecimal(0);
+                    }
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.ToString());
+                if (con.State != ConnectionState.Closed)
+                    con.Close();
+            }
+            return discountS;
+        }
+        public decimal DiscountRabatt(string supplier)
+        {
+            decimal discountR = 0;
+            try
+            {
+                con.Open();
+                cmd.CommandText = "select discountR from suppliers where name = '" + supplier + "';";
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        discountR = reader.GetDecimal(0);
+                    }
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.ToString());
+                if (con.State != ConnectionState.Closed)
+                    con.Close();
+            }
+            return discountR;
+        }
+        public decimal OnePrice(string supplier)
+        {
+            decimal price = 0;
+            try
+            {
+                con.Open();
+                cmd.CommandText = "select price from suppliers where name = '" + supplier + "';";
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        price = reader.GetDecimal(0);
+                    }
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.ToString());
+                if (con.State != ConnectionState.Closed)
+                    con.Close();
+            }
+            return price;
+        }
+
+
+
+        #endregion
+
+        #region AddNewProducts
+        public void NewProducts(string productName, string productInfo, int productID)
+        {
+            try
+            {
+                con.Open();
+                cmd.CommandText = "insert into products(product, productID, quantity, info) values ('" + productName
+                    + "', " + productID + ", 5, '" + productInfo + "')";
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.ToString());
+                if (con.State != ConnectionState.Closed)
+                    con.Close();
+            }
+        }
+        #endregion
+
+        #region LookIfProductsExist
+        public List<int> LookForProducts()
+        {
+            List<int> productID = new List<int>();  
+            try
+            {
+                con.Open();
+                cmd.CommandText = "select productID from products;";
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        productID.Add(reader.GetInt32(0));
+                        
+                    }
+                    reader.Close();
+                }
+
+                reader.Close();
+                con.Close();
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.ToString());
+                if (con.State != ConnectionState.Closed)
+                    con.Close();
+            }
+            return productID;
+        }
+        #endregion
+
+        #region ChoosenProduct
+        public int ChoosenProduct(string selected)
+        {
+            int productID = 0;
+            try
+            {
+                con.Open();
+                cmd.CommandText = "select productID from products where product = '" + selected + "';";
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        productID = reader.GetInt32(0);
+                    }
+                }
+                con.Close();
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                if (con.State != ConnectionState.Closed)
+                    con.Close();
+            }
+            return productID;
+        }
+        #endregion
+
+        #region ComboBoxSupplier
+        public void ComboBoxSupplier(string product, ComboBox existingSupplier)
+        {
+            existingSupplier.Items.Clear();
+            int productID = 1;
+
+
+            try {
+                con.Open();
+                cmd.CommandText = "select productID from products where product = '" + product +"';";
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        productID = reader.GetInt32(0);
                     }
                     reader.Close();
                 }
@@ -348,24 +623,16 @@ namespace Lagerverwaltung
                 reader.Close();
 
 
-                cmd.CommandText = "select productID from products;";
-                //cmd.CommandText = "select productID form products where product = " + productsCB.SelectedItem + ";";
-                cmd.ExecuteNonQuery();
-
+                cmd.CommandText = "select name, productID from suppliers;";
                 SqlDataReader read = cmd.ExecuteReader();
-                int num = 1;
+
                 if (read.HasRows)
                 {
                     while (read.Read())
                     {
-                        if (list[num].Equals(read.GetInt32(0)))
+                        if (productID.Equals(read.GetInt32(1)))
                         {
-                            supplier.Items.Add(read.GetString(0));
-                            num++;
-                        }
-                        else
-                        {
-                            count++;
+                            existingSupplier.Items.Add(read.GetString(0));
                         }
                     }
                 }
@@ -382,12 +649,15 @@ namespace Lagerverwaltung
                 if (con.State != ConnectionState.Closed)
                     con.Close();
             }
+
         }
-        public void AddSuppliers(string supplierName, decimal discountS, decimal discountR, string info, decimal price, int ust)
+        #endregion
+
+        #region AddSuppliers
+        public void AddSuppliers(string supplierName, decimal discountS, decimal discountR, string info, decimal price, int ust, int productID)
         {
             try
             {
-                
                 con.Open();
                 cmd.CommandText = "select max(id) from suppliers;";
                 cmd.ExecuteNonQuery();
@@ -404,8 +674,7 @@ namespace Lagerverwaltung
                     while (reader.Read())
                     {
                        supplierCount = reader.GetInt32(0) + 1;
-                       
-                        
+ 
                     }
                     reader.Close();
                 }
@@ -413,8 +682,8 @@ namespace Lagerverwaltung
                 
                 
                
-                cmd.CommandText = "insert into suppliers (name, id, discountS, discountR, deliveryTime, price, ust) " +
-                    "values('" + supplierName + "'," + supplierCount + "," + discountS + "," + discountR + ",'" + info + "', " + price + ", " + ust + ");";
+                cmd.CommandText = "insert into suppliers (name, id, discountS, discountR, info, price, ust, productID) " +
+                    "values('" + supplierName + "'," + supplierCount + "," + discountS + "," + discountR + ",'" + info + "', " + price + ", " + ust + ", " + productID + ");";
                 cmd.ExecuteNonQuery();
 
                 reader.Close();
@@ -427,5 +696,6 @@ namespace Lagerverwaltung
                     con.Close();
             }
         }
+        #endregion 
     }
 }

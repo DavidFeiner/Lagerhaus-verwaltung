@@ -74,7 +74,7 @@
             this.bttn_sell.Name = "bttn_sell";
             this.bttn_sell.Size = new System.Drawing.Size(118, 38);
             this.bttn_sell.TabIndex = 3;
-            this.bttn_sell.Text = "Verkaufen";
+            this.bttn_sell.Text = "Verkauf";
             this.bttn_sell.UseVisualStyleBackColor = true;
             this.bttn_sell.Click += new System.EventHandler(this.bttn_sell_Click);
             // 
