@@ -62,5 +62,15 @@ namespace Lagerverwaltung
             employee.ShowDialog();
             
         }
+
+        private void mainmenu_Load(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.PrimaryScreen;
+            int screen_height = screen.Bounds.Height;
+            int screen_width = screen.Bounds.Width;
+
+            this.Left = (screen_width - this.Width) / 2;
+            this.Top = (screen_height - this.Height) / 2;
+        }
     }
 }

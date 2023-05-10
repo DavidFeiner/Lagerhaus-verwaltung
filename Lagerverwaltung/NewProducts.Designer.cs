@@ -34,6 +34,7 @@
             this.txtB_infos = new System.Windows.Forms.TextBox();
             this.bttn_save = new System.Windows.Forms.Button();
             this.bttn_exit = new System.Windows.Forms.Button();
+            this.lbl_headline = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_newProduct
@@ -89,11 +90,22 @@
             this.bttn_exit.UseVisualStyleBackColor = true;
             this.bttn_exit.Click += new System.EventHandler(this.bttn_exit_Click);
             // 
+            // lbl_headline
+            // 
+            this.lbl_headline.AutoSize = true;
+            this.lbl_headline.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_headline.Location = new System.Drawing.Point(111, 20);
+            this.lbl_headline.Name = "lbl_headline";
+            this.lbl_headline.Size = new System.Drawing.Size(81, 24);
+            this.lbl_headline.TabIndex = 7;
+            this.lbl_headline.Text = "Produkt";
+            // 
             // NewProducts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(321, 322);
+            this.Controls.Add(this.lbl_headline);
             this.Controls.Add(this.bttn_exit);
             this.Controls.Add(this.bttn_save);
             this.Controls.Add(this.txtB_infos);
@@ -102,6 +114,7 @@
             this.Controls.Add(this.lbl_newProduct);
             this.Name = "NewProducts";
             this.Text = "NewProducts";
+            this.Load += new System.EventHandler(this.NewProducts_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -115,5 +128,6 @@
         private System.Windows.Forms.TextBox txtB_infos;
         private System.Windows.Forms.Button bttn_save;
         private System.Windows.Forms.Button bttn_exit;
+        private System.Windows.Forms.Label lbl_headline;
     }
 }

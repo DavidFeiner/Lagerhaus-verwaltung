@@ -73,10 +73,10 @@
             // lbl_headline
             // 
             this.lbl_headline.AutoSize = true;
-            this.lbl_headline.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_headline.Location = new System.Drawing.Point(94, 25);
+            this.lbl_headline.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_headline.Location = new System.Drawing.Point(67, 29);
             this.lbl_headline.Name = "lbl_headline";
-            this.lbl_headline.Size = new System.Drawing.Size(115, 18);
+            this.lbl_headline.Size = new System.Drawing.Size(164, 24);
             this.lbl_headline.TabIndex = 4;
             this.lbl_headline.Text = "Lagerverwaltung";
             // 
@@ -114,6 +114,7 @@
             this.Controls.Add(this.lbl_username);
             this.Name = "login";
             this.Text = "login";
+            this.Load += new System.EventHandler(this.login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

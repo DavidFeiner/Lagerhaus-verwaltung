@@ -48,10 +48,10 @@
             // lbl_employee
             // 
             this.lbl_employee.AutoSize = true;
-            this.lbl_employee.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_employee.Location = new System.Drawing.Point(185, 9);
+            this.lbl_employee.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_employee.Location = new System.Drawing.Point(181, 28);
             this.lbl_employee.Name = "lbl_employee";
-            this.lbl_employee.Size = new System.Drawing.Size(114, 25);
+            this.lbl_employee.Size = new System.Drawing.Size(108, 24);
             this.lbl_employee.TabIndex = 10;
             this.lbl_employee.Text = "Mitarbeiter";
             // 
@@ -142,7 +142,7 @@
             // 
             // bttn_save
             // 
-            this.bttn_save.Location = new System.Drawing.Point(40, 327);
+            this.bttn_save.Location = new System.Drawing.Point(366, 326);
             this.bttn_save.Name = "bttn_save";
             this.bttn_save.Size = new System.Drawing.Size(75, 23);
             this.bttn_save.TabIndex = 24;
@@ -152,7 +152,7 @@
             // 
             // bttn_back
             // 
-            this.bttn_back.Location = new System.Drawing.Point(366, 327);
+            this.bttn_back.Location = new System.Drawing.Point(40, 326);
             this.bttn_back.Name = "bttn_back";
             this.bttn_back.Size = new System.Drawing.Size(75, 23);
             this.bttn_back.TabIndex = 25;
@@ -200,6 +200,7 @@
             this.Controls.Add(this.lbl_employee);
             this.Name = "addEmployee";
             this.Text = "addEmployee";
+            this.Load += new System.EventHandler(this.addEmployee_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -15,8 +15,8 @@ namespace Lagerverwaltung
 
         SQLCommunication sql = new SQLCommunication();
         mainmenu menu = new mainmenu();
-        int quantity;
         decimal discountS, discountR, price;
+        int buyQuantity;
         public buy()
         {
             InitializeComponent();
@@ -73,7 +73,7 @@ namespace Lagerverwaltung
 
         private void bttn_allCosts_Click(object sender, EventArgs e)
         {
-            decimal buyQuantity = Convert.ToDecimal(txtB_buyQuantity.Text);
+            buyQuantity = Convert.ToInt32(txtB_buyQuantity.Text);
             decimal cost = price * buyQuantity;
             decimal costR = 0;
             decimal costS = 0;
@@ -93,14 +93,20 @@ namespace Lagerverwaltung
 
         private void bttn_buy_Click(object sender, EventArgs e)
         {
+            string product = cB_existingProduct.SelectedItem.ToString();
+            int option = 2;
+            sql.UpdateProductQuantity(buyQuantity, product, option);
+            
             MessageBox.Show("Der Kauf wurde getätigt.");
-            this.Close();
+            this.Hide();
             menu.ShowDialog();
+            this.Close();
+            
         }
 
         private void bttn_moreInfoP_Click(object sender, EventArgs e)
         {
-            string product = cB_existingProduct.SelectedItem.ToString();
+                string product = cB_existingProduct.SelectedItem.ToString();
             string infoProduct = sql.InfoProduct(product);
             MessageBox.Show(infoProduct);
         }
@@ -110,6 +116,16 @@ namespace Lagerverwaltung
             string supplier = cB_existingSupplier.SelectedItem.ToString();
             string infoSupplier = sql.InfoSupplier(supplier);
             MessageBox.Show(infoSupplier);
+        }
+
+        private void buy_Load(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.PrimaryScreen;
+            int screen_height = screen.Bounds.Height;
+            int screen_width = screen.Bounds.Width;
+
+            this.Left = (screen_width - this.Width) / 2;
+            this.Top = (screen_height - this.Height) / 2;
         }
 
         private void bttn_cancel_Click(object sender, EventArgs e)
@@ -122,8 +138,8 @@ namespace Lagerverwaltung
         private void cB_existingSupplier_SelectedIndexChanged(object sender, EventArgs e)
         {
             string supplier = cB_existingSupplier.SelectedItem.ToString();
-            quantity = sql.UST(supplier);
-            lbl_ust.Text = "UST: " + quantity + "%";
+            buyQuantity = sql.UST(supplier);
+            lbl_ust.Text = "UST: " + buyQuantity + "%";
 
             discountS = sql.DiscountSkonto(supplier);
             txtB_discountS.Text ="" +  discountS + " % Skonto";
