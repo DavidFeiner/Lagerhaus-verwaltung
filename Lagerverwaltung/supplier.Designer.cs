@@ -42,6 +42,7 @@
             this.txtB_info = new System.Windows.Forms.TextBox();
             this.bttn_save = new System.Windows.Forms.Button();
             this.bttn_cancel = new System.Windows.Forms.Button();
+            this.lbl_headline = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_supplier
@@ -74,11 +75,11 @@
             // lbl_info
             // 
             this.lbl_info.AutoSize = true;
-            this.lbl_info.Location = new System.Drawing.Point(32, 247);
+            this.lbl_info.Location = new System.Drawing.Point(32, 265);
             this.lbl_info.Name = "lbl_info";
-            this.lbl_info.Size = new System.Drawing.Size(52, 13);
+            this.lbl_info.Size = new System.Drawing.Size(124, 13);
             this.lbl_info.TabIndex = 3;
-            this.lbl_info.Text = "Anderes: ";
+            this.lbl_info.Text = "Genauere Informationen:";
             // 
             // lbl_priceOne
             // 
@@ -161,11 +162,22 @@
             this.bttn_cancel.UseVisualStyleBackColor = true;
             this.bttn_cancel.Click += new System.EventHandler(this.bttn_cancel_Click);
             // 
+            // lbl_headline
+            // 
+            this.lbl_headline.AutoSize = true;
+            this.lbl_headline.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_headline.Location = new System.Drawing.Point(107, 18);
+            this.lbl_headline.Name = "lbl_headline";
+            this.lbl_headline.Size = new System.Drawing.Size(90, 24);
+            this.lbl_headline.TabIndex = 14;
+            this.lbl_headline.Text = "Lieferant";
+            // 
             // supplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(321, 450);
+            this.Controls.Add(this.lbl_headline);
             this.Controls.Add(this.bttn_cancel);
             this.Controls.Add(this.bttn_save);
             this.Controls.Add(this.txtB_info);
@@ -182,6 +194,7 @@
             this.Controls.Add(this.lbl_supplier);
             this.Name = "supplier";
             this.Text = "supplier";
+            this.Load += new System.EventHandler(this.supplier_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -203,5 +216,6 @@
         private System.Windows.Forms.TextBox txtB_info;
         private System.Windows.Forms.Button bttn_save;
         private System.Windows.Forms.Button bttn_cancel;
+        private System.Windows.Forms.Label lbl_headline;
     }
 }

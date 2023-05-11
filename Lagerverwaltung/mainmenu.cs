@@ -43,7 +43,7 @@ namespace Lagerverwaltung
 
         private void bttn_buy_Click(object sender, EventArgs e)
         {
-            buy2 buy = new buy2();
+            buy buy = new buy();
             this.Hide();
             buy.ShowDialog();
         }
@@ -61,6 +61,16 @@ namespace Lagerverwaltung
             this.Hide();
             employee.ShowDialog();
             
+        }
+
+        private void mainmenu_Load(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.PrimaryScreen;
+            int screen_height = screen.Bounds.Height;
+            int screen_width = screen.Bounds.Width;
+
+            this.Left = (screen_width - this.Width) / 2;
+            this.Top = (screen_height - this.Height) / 2;
         }
     }
 }

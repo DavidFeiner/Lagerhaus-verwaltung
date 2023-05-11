@@ -29,6 +29,16 @@ namespace Lagerverwaltung
             Environment.Exit(0);
         }
 
+        private void login_Load(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.PrimaryScreen;
+            int screen_height = screen.Bounds.Height;
+            int screen_width = screen.Bounds.Width;
+
+            this.Left = (screen_width - this.Width) / 2;
+            this.Top = (screen_height - this.Height) / 2;
+        }
+
         private void bttn_accept_Click(object sender, EventArgs e)
         {
             username = Convert.ToString(txtB_username.Text);
