@@ -39,7 +39,7 @@ namespace Lagerverwaltung
                     con.Close();
                     con.ConnectionString += "database = " + nameDB + "; ";
                     con.Open();
-                    cmd.CommandText = "create Table login([name] nvarchar(50), [surname] nvarchar(50), [username] nvarchar(50), [password] nvarchar(50))";
+                    cmd.CommandText = "create Table login([name] nvarchar(50), [surname] nvarchar(50), [username] nvarchar(50), [password] nvarchar(50), [salt] nvarchar(50))";
                     cmd.ExecuteNonQuery();
                     cmd.CommandText = "create Table products([product] nvarchar(50),[productID] integer, [quantity] integer, [info] nvarchar(50))";
                     cmd.ExecuteNonQuery();
@@ -52,8 +52,8 @@ namespace Lagerverwaltung
                     //cmd.CommandText = "insert into suppliers(name, id, discountS, discountR, info, price, ust, productID) " +
                     //    "values ('D', 1, 2, 3, 'dfjdkj', 3, 3, 1);";
                     //cmd.ExecuteNonQuery();
-                    //cmd.CommandText = "insert into login(name, surname, username, password) values ('admin', 'admin', 'admin', 'admin')";
-                    //cmd.ExecuteNonQuery();
+                    cmd.CommandText = "insert into login(name, surname, username, password) values ('admin', 'admin', 'admin', 'admin', 0)";
+                    cmd.ExecuteNonQuery();
                     //cmd.CommandText = "insert into products(product, productID, quantity, info) values " +
                     //    "('Pflanze',1, 20, 'Hallo Hallo')";
                     //cmd.ExecuteNonQuery();
@@ -97,7 +97,7 @@ namespace Lagerverwaltung
         #endregion
 
         #region CheckLogin
-        public bool CheckLogin(string username, string password)
+        public bool CheckLoginn(string username, string password)
         {
             bool correctLogin = false;
 
@@ -316,7 +316,8 @@ namespace Lagerverwaltung
                     }
                 }
                 con.Close();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 MessageBox.Show(ex.ToString());
@@ -505,7 +506,8 @@ namespace Lagerverwaltung
                 cmd.ExecuteNonQuery();
                 con.Close();
 
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 MessageBox.Show(ex.ToString());
@@ -568,7 +570,8 @@ namespace Lagerverwaltung
                     }
                 }
                 con.Close();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 if (con.State != ConnectionState.Closed)
@@ -585,7 +588,8 @@ namespace Lagerverwaltung
             int productID = 1;
 
 
-            try {
+            try
+            {
                 con.Open();
                 cmd.CommandText = "select productID from products where product = '" + product + "';";
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -645,7 +649,7 @@ namespace Lagerverwaltung
                 int supplierCount = 0;
 
                 //look if there is data in the table and if not give the first supplier the number 1
-                if(!reader.IsDBNull(0))
+                if (!reader.IsDBNull(0))
                 {
                     supplierCount = reader.GetInt32(0) + 1;
                 }
@@ -653,7 +657,7 @@ namespace Lagerverwaltung
                 {
                     supplierCount = 1;
                 }
-               
+
                 reader.Close();
 
                 cmd.CommandText = "insert into suppliers (name, id, discountS, discountR, info, price, ust, productID) values('" + supplierName + "'," + supplierCount + "," + discountS + "," + discountR + ",'" + info + "', " + price + ", " + ust + ", " + productID + ");";
@@ -661,7 +665,8 @@ namespace Lagerverwaltung
 
                 reader.Close();
                 con.Close();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 MessageBox.Show(ex.ToString());
@@ -680,7 +685,8 @@ namespace Lagerverwaltung
                 cmd.CommandText = "insert into buyers(name, onePrice, discountS, discountR, info, fullPrice, ust, amount) values ('" + name + "', " + onePrice + "," + discountS + ", " + discountR + ", '" + info + "'," + fullPrice + ", 20," + amount + " )";
                 cmd.ExecuteNonQuery();
                 con.Close();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
                 if (con.State != ConnectionState.Closed)
@@ -740,21 +746,22 @@ namespace Lagerverwaltung
         #region LookForQuantity
         public int LookForQuantity()
         {
-            int stock = 0; 
+            int stock = 0;
             try
             {
                 con.Open();
                 cmd.CommandText = "select quantity from products;";
-                
+
                 SqlDataReader reader = cmd.ExecuteReader();
                 reader.Read();
                 if (reader.HasRows)
                 {
                     stock = reader.GetInt32(0);
-                    
+
                 }
                 con.Close();
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
                 if (con.State != ConnectionState.Closed)
@@ -770,26 +777,133 @@ namespace Lagerverwaltung
             try
             {
                 con.Open();
-                if(option == 1)
+                if (option == 1)
                 {
                     cmd.CommandText = "update products set quantity = quantity -" + quantity + " where product = '" + productName + "';";
                     cmd.ExecuteNonQuery();
                 }
-                else if(option == 2)
+                else if (option == 2)
                 {
                     cmd.CommandText = "update products set quantity = quantity +" + quantity + " where product = '" + productName + "';";
                     cmd.ExecuteNonQuery();
                 }
                 con.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
                 if (con.State != ConnectionState.Closed)
                     con.Close();
             }
-            
+
         }
         #endregion
-    }   }   
+
+        #region GetSaltForUser
+        public string GetSaltForUser(string username)
+        {
+            string salt = null;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    SqlCommand command = new SqlCommand("SELECT salt FROM login WHERE username = @username", connection);
+                    command.Parameters.AddWithValue("@username", username);
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        salt = Convert.ToString(reader["salt"]);
+                    }
+
+                    reader.Close();
+                    connection.Close();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    if (con.State != ConnectionState.Closed)
+                        con.Close();
+                }
+                
+            }
+
+            return salt;
+        }
+        #endregion
+
+
+        #region SaveSaltForUser
+        public void SaveSaltForUser(string username, string salt)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    SqlCommand command = new SqlCommand("UPDATE login SET salt = @salt WHERE username = @username", connection);
+                    command.Parameters.AddWithValue("@username", username);
+                    command.Parameters.AddWithValue("@salt", salt);
+
+                    command.ExecuteNonQuery();
+
+                    connection.Close();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    if (con.State != ConnectionState.Closed)
+                        con.Close();
+                }
+               
+            }
+        }
+        #endregion
+
+
+        #region CheckLogin
+        public bool CheckLogin(string username, string hashedPassword)
+        {
+            bool correct = false;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM login WHERE username = @username AND password = @password", connection);
+                    command.Parameters.AddWithValue("@username", username);
+                    command.Parameters.AddWithValue("@password", hashedPassword);
+
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+
+                    if (count == 1)
+                    {
+                        correct = true;
+                    }
+                    connection.Close();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    if (con.State != ConnectionState.Closed)
+                        con.Close();
+                }
+                
+            }
+
+            return correct;
+        }
+        #endregion
+    }
+}
+
+  
+
 

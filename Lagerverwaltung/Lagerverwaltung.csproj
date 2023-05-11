@@ -55,6 +55,7 @@
     <Compile Include="addEmployee.Designer.cs">
       <DependentUpon>addEmployee.cs</DependentUpon>
     </Compile>
+    <Compile Include="BCrypt.cs" />
     <Compile Include="buy3.cs">
       <SubType>Form</SubType>
     </Compile>
