@@ -52,8 +52,8 @@ namespace Lagerverwaltung
                     //cmd.CommandText = "insert into suppliers(name, id, discountS, discountR, info, price, ust, productID) " +
                     //    "values ('D', 1, 2, 3, 'dfjdkj', 3, 3, 1);";
                     //cmd.ExecuteNonQuery();
-                    cmd.CommandText = "insert into login(name, surname, username, password) values ('admin', 'admin', 'admin', 'admin', 0)";
-                    cmd.ExecuteNonQuery();
+                    //cmd.CommandText = "insert into login(name, surname, username, password) values ('admin', 'admin', 'admin', 'admin', 0)";
+                    //cmd.ExecuteNonQuery();
                     //cmd.CommandText = "insert into products(product, productID, quantity, info) values " +
                     //    "('Pflanze',1, 20, 'Hallo Hallo')";
                     //cmd.ExecuteNonQuery();
@@ -97,7 +97,7 @@ namespace Lagerverwaltung
         #endregion
 
         #region CheckLogin
-        public bool CheckLoginn(string username, string password)
+        public bool CheckLogin(string username, string password)
         {
             bool correctLogin = false;
 
@@ -867,7 +867,7 @@ namespace Lagerverwaltung
 
 
         #region CheckLogin
-        public bool CheckLogin(string username, string hashedPassword)
+        public bool CheckLoginn(string username, string hashedPassword)
         {
             bool correct = false;
 
