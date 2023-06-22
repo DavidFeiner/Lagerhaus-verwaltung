@@ -33,5 +33,11 @@ namespace Lagerverwaltung
             this.Left = (screen_width - this.Width) / 2;
             this.Top = (screen_height - this.Height) / 2;
         }
+
+        public void showSales()
+        {
+
+        }
+
     }
 }

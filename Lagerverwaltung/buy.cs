@@ -87,7 +87,8 @@ namespace Lagerverwaltung
                 costS = (costR *discountS) / 100;
             }
 
-            txtB_totalCost.Text = Convert.ToString(cost - costR - costS) + " €";
+            decimal allCosts = cost - costR - costS;
+            txtB_totalCost.Text = Convert.ToString( allCosts + " €");
 
         }
 
@@ -98,6 +99,8 @@ namespace Lagerverwaltung
             sql.UpdateProductQuantity(buyQuantity, product, option);
             
             MessageBox.Show("Der Kauf wurde getätigt.");
+            sales ShowSale = new sales();
+            ShowSale.showSales();
             this.Hide();
             menu.ShowDialog();
             this.Close();
