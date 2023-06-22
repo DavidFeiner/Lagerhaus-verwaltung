@@ -859,14 +859,9 @@ namespace Lagerverwaltung
                 }
                
             }
-        }
-        #endregion
 
-
-            return correct;
         }
-        #endregion
-        public decimal GetTotalRevenue() 
+        public decimal GetTotalRevenue()
         {
             decimal totalRevenue = 2000;
 
@@ -883,7 +878,7 @@ namespace Lagerverwaltung
                 }
 
 
-                
+
 
                 con.Close();
             }
@@ -898,7 +893,7 @@ namespace Lagerverwaltung
         }
 
 
-        public decimal GetTotalExpenses() 
+        public decimal GetTotalExpenses()
         {
             decimal totalExpenses = 0;
 
@@ -906,7 +901,7 @@ namespace Lagerverwaltung
             {
                 con.Open();
 
-                cmd.CommandText = "SELECT SUM([price]) FROM suppliers";             
+                cmd.CommandText = "SELECT SUM([price]) FROM suppliers";
                 object employeesExpenses = cmd.ExecuteScalar();
                 if (employeesExpenses != DBNull.Value)
                 {
@@ -925,7 +920,15 @@ namespace Lagerverwaltung
             return totalExpenses;
         }
     }
+    #endregion
+   
+
+
+
+
+
 }
+
 
   
 

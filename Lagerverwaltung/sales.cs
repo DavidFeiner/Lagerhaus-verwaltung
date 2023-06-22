@@ -19,6 +19,11 @@ namespace Lagerverwaltung
             
         }
 
+        internal void showSales()
+        {
+            
+        }
+
         private void bttn_back_Click(object sender, EventArgs e)
         {
             this.Hide();
