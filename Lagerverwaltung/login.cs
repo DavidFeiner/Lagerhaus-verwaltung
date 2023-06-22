@@ -65,40 +65,7 @@ namespace Lagerverwaltung
             }
 
 
-            //username = Convert.ToString(txtB_username.Text);
-            //password = Convert.ToString(txtB_password.Text);
-
-
-            //string salt = sql.GetSaltForUser(username);
-
-            //if (salt == null)
-            //{
-            //    salt = BCrypt.GenerateSalt();
-            //    sql.SaveSaltForUser(username, salt);
-            //}
-
-
-            //string hashedPassword = BCrypt.HashPassword(password, salt);
-
-
-            //bool correct = sql.CheckLogin(username, hashedPassword);
-
-            //if (correct)
-            //{
-
-            //    mainmenu mainmenu = new mainmenu();
-            //    this.Hide();
-            //    mainmenu.ShowDialog();
-            //}
-            //else
-            //{
-
-            //    MessageBox.Show("Username or Password are false!");
-            //    txtB_username.Clear();
-            //    txtB_password.Clear();
-            //    txtB_username.Focus();
-            //}
-
+            
 
         }
     }
