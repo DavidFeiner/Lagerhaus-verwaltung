@@ -26,6 +26,7 @@ namespace Lagerverwaltung
             this.Hide();
             mainmenu mainmenu = new mainmenu();
             mainmenu.ShowDialog();
+            this.Close();
         }
 
         private void storage_Load(object sender, EventArgs e)
