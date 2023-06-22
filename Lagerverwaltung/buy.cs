@@ -71,7 +71,7 @@ namespace Lagerverwaltung
 
         }
 
-        private void bttn_allCosts_Click(object sender, EventArgs e)
+        private void bttn_allCosts_Click(object sender, EventArgs e) //Total
         {
             buyQuantity = Convert.ToInt32(txtB_buyQuantity.Text);
             decimal cost = price * buyQuantity;
@@ -92,7 +92,7 @@ namespace Lagerverwaltung
 
         }
 
-        private void bttn_buy_Click(object sender, EventArgs e)
+        private void bttn_buy_Click(object sender, EventArgs e) //Buying from suplier
         {
             string product = cB_existingProduct.SelectedItem.ToString();
             int option = 2;
@@ -138,7 +138,7 @@ namespace Lagerverwaltung
             menu.ShowDialog();
         }
 
-        private void cB_existingSupplier_SelectedIndexChanged(object sender, EventArgs e)
+        private void cB_existingSupplier_SelectedIndexChanged(object sender, EventArgs e) //Already existing data of suppliers
         {
             string supplier = cB_existingSupplier.SelectedItem.ToString();
             buyQuantity = sql.UST(supplier);

@@ -33,7 +33,7 @@ namespace Lagerverwaltung
 
 
 
-        private void sales_Load(object sender, EventArgs e)
+        private void sales_Load(object sender, EventArgs e) //Getting values from SQLCommunication and calculate profit/loss
         {
             SQLCommunication sqlCommunication = new SQLCommunication();
 
@@ -41,7 +41,7 @@ namespace Lagerverwaltung
             decimal expenses = sqlCommunication.GetTotalExpenses();
 
             textBoxSales.Text = revenue.ToString();
-            textBoxExpencis.Text = expenses.ToString();
+            textBoxExpenses.Text = expenses.ToString();
 
             decimal profit = revenue - expenses;
             txtBoxProfit.Text = profit.ToString();

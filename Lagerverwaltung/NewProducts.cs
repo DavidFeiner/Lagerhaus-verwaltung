@@ -41,7 +41,7 @@ namespace Lagerverwaltung
             this.Top = (screen_height - this.Height) / 2;
         }
 
-        private void bttn_save_Click(object sender, EventArgs e)
+        private void bttn_save_Click(object sender, EventArgs e) //Save all inputs
         {
             existingP = sql.LookForProducts();
             productID = existingP.Count + 1;

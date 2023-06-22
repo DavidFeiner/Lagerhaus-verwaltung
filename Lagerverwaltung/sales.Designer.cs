@@ -32,7 +32,7 @@
             this.txtBoxProfit = new System.Windows.Forms.TextBox();
             this.lbl_buySell = new System.Windows.Forms.Label();
             this.lbl_sales = new System.Windows.Forms.Label();
-            this.textBoxExpencis = new System.Windows.Forms.TextBox();
+            this.textBoxExpenses = new System.Windows.Forms.TextBox();
             this.textBoxSales = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -76,12 +76,12 @@
             this.lbl_sales.TabIndex = 16;
             this.lbl_sales.Text = "Gewinn/Verlust:";
             // 
-            // textBoxExpencis
+            // textBoxExpenses
             // 
-            this.textBoxExpencis.Location = new System.Drawing.Point(276, 116);
-            this.textBoxExpencis.Name = "textBoxExpencis";
-            this.textBoxExpencis.Size = new System.Drawing.Size(100, 20);
-            this.textBoxExpencis.TabIndex = 17;
+            this.textBoxExpenses.Location = new System.Drawing.Point(276, 116);
+            this.textBoxExpenses.Name = "textBoxExpenses";
+            this.textBoxExpenses.Size = new System.Drawing.Size(100, 20);
+            this.textBoxExpenses.TabIndex = 17;
             // 
             // textBoxSales
             // 
@@ -116,14 +116,13 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxSales);
-            this.Controls.Add(this.textBoxExpencis);
+            this.Controls.Add(this.textBoxExpenses);
             this.Controls.Add(this.lbl_sales);
             this.Controls.Add(this.lbl_buySell);
             this.Controls.Add(this.txtBoxProfit);
             this.Controls.Add(this.bttn_back);
             this.Name = "sales";
             this.Text = "sales";
-           
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -135,7 +134,7 @@
         private System.Windows.Forms.TextBox txtBoxProfit;
         private System.Windows.Forms.Label lbl_buySell;
         private System.Windows.Forms.Label lbl_sales;
-        private System.Windows.Forms.TextBox textBoxExpencis;
+        private System.Windows.Forms.TextBox textBoxExpenses;
         private System.Windows.Forms.TextBox textBoxSales;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

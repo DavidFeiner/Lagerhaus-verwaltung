@@ -40,7 +40,7 @@ namespace Lagerverwaltung
             this.Top = (screen_height - this.Height) / 2;
         }
 
-        private void bttn_accept_Click(object sender, EventArgs e)
+        private void bttn_accept_Click(object sender, EventArgs e) //Checking PAssword
         {
             username = Convert.ToString(txtB_username.Text);
             password = Convert.ToString(txtB_password.Text);
@@ -54,7 +54,7 @@ namespace Lagerverwaltung
             }
             else
             {
-                //MessageBox.Show("Username or Password are false!");
+                
                 txtB_username.Clear();
                 txtB_password.Clear();
                 txtB_username.Focus();
