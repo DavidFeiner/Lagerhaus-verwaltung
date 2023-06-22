@@ -12,9 +12,29 @@ namespace Lagerverwaltung
 {
     public partial class mainmenu : Form
     {
+        SQLCommunication sql = new SQLCommunication();
+        string username;
+        bool admin;
         public mainmenu()
         {
             InitializeComponent();
+            CheckIfAdmin();
+        }
+        public void GiveName(string username)
+        {
+            //take the name of the user who logged in 
+            this.username = username;
+        }
+        public void CheckIfAdmin()
+        {
+            //check if logged person is admin
+            admin =  sql.CheckAdmin(this.username);
+            if(!admin)
+            {
+                bttn_employee.Hide();
+            }
+            
+            
         }
 
         private void bttn_signOut_Click(object sender, EventArgs e)
@@ -59,6 +79,7 @@ namespace Lagerverwaltung
         {
             addEmployee employee = new addEmployee();
             this.Hide();
+          
             employee.ShowDialog();
             
         }

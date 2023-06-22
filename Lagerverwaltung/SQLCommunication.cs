@@ -41,7 +41,7 @@ namespace Lagerverwaltung
                     con.Close();
                     con.ConnectionString += "database = " + nameDB + "; ";
                     con.Open();
-                    cmd.CommandText = "create Table login([name] nvarchar(50), [surname] nvarchar(50), [username] nvarchar(50), [password] nvarchar(50), [salt] nvarchar(50))";
+                    cmd.CommandText = "create Table login([userNum] integer, [name] nvarchar(50), [surname] nvarchar(50), [username] nvarchar(50), [password] nvarchar(50))";
                     cmd.ExecuteNonQuery();
                     cmd.CommandText = "create Table products([product] nvarchar(50),[productID] integer, [quantity] integer, [info] nvarchar(50))";
                     cmd.ExecuteNonQuery();
@@ -138,41 +138,86 @@ namespace Lagerverwaltung
         #region AddEmployee
         public void AddEmployee(string name, string surname, string username, string password) //Adding Employees and give them a Password that is getting hashed
         {
-     
+            //check if username is already in use and if not create new Employee or Admin
             int userNum = 1;
+
+            string hashedPassword = BCrypt.HashPassword(password, BCrypt.GenerateSalt());
             try
             {
-                string hashedPassword = BCrypt.HashPassword(password, BCrypt.GenerateSalt());
-                con.Open();
 
-                cmd.CommandText = "select username from login where username = '" + username + "';";
+               con.Open();
                 //look if command gives 0 back 
+                cmd.CommandText = "select username from login where username = '" + username + "';";
 
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.HasRows)
+                SqlDataReader read = cmd.ExecuteReader();
+                read.Read();
+                while(read.Read())
                 {
-                    MessageBox.Show("Username already exists. Please enter a new one.");
-                    reader.Close();
-                    con.Close();
-
-                }
-                else
-                {
-                    reader.Close();
-
-                    cmd.CommandText = "select max(userNum) from login;";
-                    SqlDataReader read = cmd.ExecuteReader();
-                    read.Read();
                     if (read.HasRows)
                     {
-                        userNum = read.GetInt32(0) + 1;
-                    }
-                    read.Close();
+                        MessageBox.Show("Username already exists. Please enter a new one.");
+                        read.Close();
+                        con.Close();
 
-                    cmd.CommandText = "insert into login (username, password, userNum) values ('" + username + "', '" + hashedPassword + "'," + userNum + ");";
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("User was successfully created!");
+                    }
+                    else
+                    {
+                        read.Close();
+
+                        cmd.CommandText = "select max(userNum) from login;";
+                        SqlDataReader reade= cmd.ExecuteReader();
+                        reade.Read();
+                        if (reade.HasRows)
+                        {
+                            userNum = reade.GetInt32(0) + 1;
+                        }
+                        reade.Close();
+
+                        cmd.CommandText = "insert into login (userNum, name, surname, username, password) values (" + userNum + ",'" + name + "', '" + surname + "', '" + username + "', '" + hashedPassword + "');";
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("User was successfully created!");
+                    }
                 }
+                
+                con.Close();
+               
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                if (con.State != ConnectionState.Closed)
+                {
+                    con.Close();
+                }
+            }
+
+
+
+        }
+
+        #endregion
+
+        #region Admin
+        public bool CheckAdmin(string username)
+        {
+            //check if username is the first in der userNum because thats then the admin
+            bool admin = false;
+            try
+            {
+                con.Open();
+                cmd.CommandText = "select userNum from login where username = '" + username + "';";
+                SqlDataReader reader = cmd.ExecuteReader(); 
+                if(reader.Read())
+                {
+                    if (reader.HasRows)
+                    {
+                        if(reader.GetInt32(0) == 1)
+                        {
+                            admin = true;
+                        }
+                    }
+                }
+
                 con.Close();
             }
             catch (Exception ex)
@@ -183,10 +228,48 @@ namespace Lagerverwaltung
                     con.Close();
                 }
             }
-
-
+            return admin;
         }
 
+        public void LookForAdmin()
+        {
+            try
+            {
+                //look if there is already an admin or if there has to be one created
+                con.Open();
+                cmd.CommandText = "select * from login;";
+                SqlDataReader reader = cmd.ExecuteReader();
+                
+                if(reader.HasRows)
+                {
+                    MessageBox.Show("halooo");
+                    reader.Close();
+                    return;
+
+
+                }
+                else
+                {
+                    con.Close();
+                    reader.Close();
+                    RegisterAdmin admin = new RegisterAdmin();
+                    admin.ShowDialog();
+
+
+
+                }
+
+                reader.Close();
+                con.Close();
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                if (con.State != ConnectionState.Closed)
+                {
+                    con.Close();
+                }
+            }
+        }
         #endregion
 
         #region DataOverview

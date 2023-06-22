@@ -25,6 +25,8 @@ namespace Lagerverwaltung
             this.Top = (screen_height - this.Height) / 2;
         }
 
+     
+
         SQLCommunication sql = new SQLCommunication();
         public addEmployee()
         {
@@ -43,6 +45,7 @@ namespace Lagerverwaltung
 
         private void bttn_save_Click(object sender, EventArgs e) //Get inputs
         {
+            //create new Employess
             name = Convert.ToString(txtB_name.Text);
             surname = Convert.ToString(txtB_password.Text);
             username = Convert.ToString(txtB_username.Text);

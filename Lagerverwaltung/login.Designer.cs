@@ -35,6 +35,7 @@
             this.lbl_headline = new System.Windows.Forms.Label();
             this.bttn_accept = new System.Windows.Forms.Button();
             this.bttn_close = new System.Windows.Forms.Button();
+            this.bttn_admin = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbl_username
@@ -100,11 +101,22 @@
             this.bttn_close.UseVisualStyleBackColor = true;
             this.bttn_close.Click += new System.EventHandler(this.bttn_close_Click);
             // 
+            // bttn_admin
+            // 
+            this.bttn_admin.Location = new System.Drawing.Point(41, 222);
+            this.bttn_admin.Name = "bttn_admin";
+            this.bttn_admin.Size = new System.Drawing.Size(75, 23);
+            this.bttn_admin.TabIndex = 7;
+            this.bttn_admin.Text = "Benutzer";
+            this.bttn_admin.UseVisualStyleBackColor = true;
+            this.bttn_admin.Click += new System.EventHandler(this.bttn_admin_Click);
+            // 
             // login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(312, 318);
+            this.Controls.Add(this.bttn_admin);
             this.Controls.Add(this.bttn_close);
             this.Controls.Add(this.bttn_accept);
             this.Controls.Add(this.lbl_headline);
@@ -129,5 +141,6 @@
         private System.Windows.Forms.Label lbl_headline;
         private System.Windows.Forms.Button bttn_accept;
         private System.Windows.Forms.Button bttn_close;
+        private System.Windows.Forms.Button bttn_admin;
     }
 }
