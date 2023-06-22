@@ -853,6 +853,8 @@ namespace Lagerverwaltung
             }
 
         }
+        #endregion
+        #region revenue
         public decimal GetTotalRevenue() // get total revenue from selling products
         {
             decimal totalRevenue = 2000;
@@ -883,8 +885,8 @@ namespace Lagerverwaltung
 
             return totalRevenue;
         }
-
-
+        #endregion 
+        #region Expenses
         public decimal GetTotalExpenses() //Get total Expenses from buying products
         {
             decimal totalExpenses = 0;
