@@ -12,9 +12,11 @@ namespace Lagerverwaltung
 {
     public partial class sales : Form
     {
+        
         public sales()
         {
             InitializeComponent();
+            
         }
 
         private void bttn_back_Click(object sender, EventArgs e)
@@ -24,14 +26,22 @@ namespace Lagerverwaltung
             mainmenu.ShowDialog();
         }
 
+
+
         private void sales_Load(object sender, EventArgs e)
         {
-            System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.PrimaryScreen;
-            int screen_height = screen.Bounds.Height;
-            int screen_width = screen.Bounds.Width;
+            SQLCommunication sqlCommunication = new SQLCommunication();
 
-            this.Left = (screen_width - this.Width) / 2;
-            this.Top = (screen_height - this.Height) / 2;
+            decimal revenue = sqlCommunication.GetTotalRevenue();
+            decimal expenses = sqlCommunication.GetTotalExpenses();
+
+            textBoxSales.Text = revenue.ToString();
+            textBoxExpencis.Text = expenses.ToString();
+
+            decimal profit = revenue - expenses;
+            txtBoxProfit.Text = profit.ToString();
+            this.Refresh();
         }
+
     }
 }

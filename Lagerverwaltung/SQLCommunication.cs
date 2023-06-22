@@ -901,6 +901,64 @@ namespace Lagerverwaltung
             return correct;
         }
         #endregion
+        public decimal GetTotalRevenue() 
+        {
+            decimal totalRevenue = 2000;
+
+            try
+            {
+                con.Open();
+
+
+                cmd.CommandText = "SELECT SUM([totalPrice]) FROM buyers";
+                object carsRevenue = cmd.ExecuteScalar();
+                if (carsRevenue != DBNull.Value)
+                {
+                    totalRevenue += Convert.ToDecimal(carsRevenue);
+                }
+
+
+                
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                if (con.State != ConnectionState.Closed)
+                    con.Close();
+            }
+
+            return totalRevenue;
+        }
+
+
+        public decimal GetTotalExpenses() 
+        {
+            decimal totalExpenses = 0;
+
+            try
+            {
+                con.Open();
+
+                cmd.CommandText = "SELECT SUM([price]) FROM suppliers";             
+                object employeesExpenses = cmd.ExecuteScalar();
+                if (employeesExpenses != DBNull.Value)
+                {
+                    totalExpenses += Convert.ToDecimal(employeesExpenses);
+                }
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                if (con.State != ConnectionState.Closed)
+                    con.Close();
+            }
+
+            return totalExpenses;
+        }
     }
 }
 
