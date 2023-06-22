@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
+using StudioManager;
 
 namespace Lagerverwaltung
 {
@@ -20,6 +21,7 @@ namespace Lagerverwaltung
         static SqlConnection con = new SqlConnection(connectionString);
         SqlCommand cmd = new SqlCommand(" ", con);
 
+        string username;
 
         #region CreateDatabase
         public void CreateDatabase()
@@ -52,8 +54,8 @@ namespace Lagerverwaltung
                     //cmd.CommandText = "insert into suppliers(name, id, discountS, discountR, info, price, ust, productID) " +
                     //    "values ('D', 1, 2, 3, 'dfjdkj', 3, 3, 1);";
                     //cmd.ExecuteNonQuery();
-                    cmd.CommandText = "insert into login(name, surname, username, password) values ('admin', 'admin', 'admin', 'admin', 0)";
-                    cmd.ExecuteNonQuery();
+                    //cmd.CommandText = "insert into login(name, surname, username, password) values ('admin', 'admin', 'admin', 'admin', 0)";
+                    //cmd.ExecuteNonQuery();
                     //cmd.CommandText = "insert into products(product, productID, quantity, info) values " +
                     //    "('Pflanze',1, 20, 'Hallo Hallo')";
                     //cmd.ExecuteNonQuery();
@@ -97,105 +99,100 @@ namespace Lagerverwaltung
         #endregion
 
         #region CheckLogin
-        public bool CheckLoginn(string username, string password)
+        public bool CheckLogin(string username, string password)
         {
-            bool correctLogin = false;
+            this.username = username;
+            //look in database if username and password are existing
+            bool correct = false;
 
             try
             {
+
+                if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+                {
+                    MessageBox.Show("Username or Password are Empty!");
+                    return correct;
+                }
                 con.Open();
-                cmd.CommandText = "select * from login where username = '" + username + "' and password = '" + password + "';";
-                cmd.ExecuteNonQuery();
+                cmd.CommandText = "select password from login where username = '" + username + "';";
 
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
-                    correctLogin = true;
-                    reader.Close();
+                    while (reader.Read())
+                    {
+                        string hashedPassword = reader.GetString(0);
+                        if (BCrypt.CheckPassword(password, hashedPassword))
+                        {
+                            correct = true;
+                        }
+                    }
                 }
-                else
-                {
-                    correctLogin = false;
-                    reader.Close();
-                }
-                reader.Close();
-
+                con.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                Console.WriteLine(ex.Message);
                 if (con.State != ConnectionState.Closed)
+                {
                     con.Close();
+                }
             }
+            return correct;
 
-            con.Close();
-
-            return correctLogin;
         }
         #endregion
 
         #region AddEmployee
         public void AddEmployee(string name, string surname, string username, string password)
         {
-            //doesnt work :(
-            //try
-            //{
-            //    con.Open();
-            //    cmd.CommandText = "select * from login where username = '" + username + "' and password = '" + password + "';";
-            //    cmd.ExecuteNonQuery();
-
-            //    SqlDataReader reader = cmd.ExecuteReader();
-            //    if (reader.HasRows)
-            //    {
-            //        MessageBox.Show("Benutzername existiert schon. Suchen Sie einen anderen aus: ");
-            //    }
-            //    else
-            //    {
-            //        cmd.CommandText = "insert into login (name, surname, username, password) values ('" + name +
-            //          "', '" + surname + "','" + username + "' , '" + password + "');";
-            //        cmd.ExecuteNonQuery(); 
-            //    }
-            //    reader.Close();
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //    MessageBox.Show(ex.ToString());
-            //    if (con.State != ConnectionState.Closed)
-            //        con.Close();
-            //}
-            //con.Close();
-
+     
+            int userNum = 1;
             try
             {
+                string hashedPassword = BCrypt.HashPassword(password, BCrypt.GenerateSalt());
                 con.Open();
-                cmd.CommandText = "select * from login where username = '" + username + "';";
-                cmd.ExecuteNonQuery();
+
+                cmd.CommandText = "select username from login where username = '" + username + "';";
+                //look if command gives 0 back 
 
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
-                    MessageBox.Show("Benutzername existiert schon. Suchen Sie einen anderen aus: ");
+                    MessageBox.Show("Username already exists. Please enter a new one.");
+                    reader.Close();
+                    con.Close();
+
                 }
                 else
                 {
+                    reader.Close();
 
-                    cmd.CommandText = "insert into login (name, surname, username, password) values ('" + name +
-                      "', '" + surname + "','" + username + "' , '" + password + "');";
+                    cmd.CommandText = "select max(userNum) from login;";
+                    SqlDataReader read = cmd.ExecuteReader();
+                    read.Read();
+                    if (read.HasRows)
+                    {
+                        userNum = read.GetInt32(0) + 1;
+                    }
+                    read.Close();
+
+                    cmd.CommandText = "insert into login (username, password, userNum) values ('" + username + "', '" + hashedPassword + "'," + userNum + ");";
                     cmd.ExecuteNonQuery();
+                    MessageBox.Show("User was successfully created!");
                 }
-                reader.Close();
-
+                con.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-                MessageBox.Show(ex.ToString());
+                Console.WriteLine(ex.Message);
                 if (con.State != ConnectionState.Closed)
+                {
                     con.Close();
+                }
             }
-            con.Close();
+
+
         }
 
         #endregion
@@ -865,38 +862,6 @@ namespace Lagerverwaltung
         }
         #endregion
 
-
-        #region CheckLogin
-        public bool CheckLogin(string username, string hashedPassword)
-        {
-            bool correct = false;
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-
-                    SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM login WHERE username = @username AND password = @password", connection);
-                    command.Parameters.AddWithValue("@username", username);
-                    command.Parameters.AddWithValue("@password", hashedPassword);
-
-                    int count = Convert.ToInt32(command.ExecuteScalar());
-
-                    if (count == 1)
-                    {
-                        correct = true;
-                    }
-                    connection.Close();
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                    if (con.State != ConnectionState.Closed)
-                        con.Close();
-                }
-                
-            }
 
             return correct;
         }
