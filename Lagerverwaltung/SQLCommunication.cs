@@ -136,7 +136,7 @@ namespace Lagerverwaltung
         #endregion
 
         #region AddEmployee
-        public void AddEmployee(string name, string surname, string username, string password)
+        public void AddEmployee(string name, string surname, string username, string password) //Adding Employees and give them a Password that is getting hashed
         {
             //check if username is already in use and if not create new Employee or Admin
             int userNum = 1;
@@ -273,7 +273,7 @@ namespace Lagerverwaltung
         #endregion
 
         #region DataOverview
-        public DataTable DataOverview(DataGridView dataOverview)
+        public DataTable DataOverview(DataGridView dataOverview) //Show all products
         {
             DataTable dataTable = new DataTable();
             try
@@ -299,7 +299,7 @@ namespace Lagerverwaltung
         #endregion
 
         #region LoadDGV
-        public void Load(DataTable table)
+        public void Load(DataTable table) 
         {
             SqlBulkCopy sql = new SqlBulkCopy(con);
 
@@ -330,7 +330,7 @@ namespace Lagerverwaltung
         #endregion
 
         #region ComboBoxProducts
-        public void ComboBox(ComboBox cbB_product)
+        public void ComboBox(ComboBox cbB_product) //Combobox with all products
         {
             cbB_product.Items.Clear();
             try
@@ -347,7 +347,7 @@ namespace Lagerverwaltung
                     while (reader.Read())
                     {
                         cbB_product.Items.Add(reader.GetString(0));
-                        //cbB_product = productsCB;
+                      
                         count++;
                     }
                     reader.Close();
@@ -371,7 +371,7 @@ namespace Lagerverwaltung
         #endregion
 
         #region existingData
-        public int ExistingQuantity(string product)
+        public int ExistingQuantity(string product) //Check how much quantity exists
         {
             int num = 0;
             try
@@ -398,7 +398,7 @@ namespace Lagerverwaltung
             }
             return num;
         }
-        public string InfoProduct(string product)
+        public string InfoProduct(string product) //Infosection of the product
         {
             string info = "";
             try
@@ -425,7 +425,7 @@ namespace Lagerverwaltung
             }
             return info;
         }
-        public string InfoSupplier(string supplier)
+        public string InfoSupplier(string supplier) //Info Section from the Suppliers
         {
             string info = "";
             try
@@ -453,7 +453,7 @@ namespace Lagerverwaltung
             return info;
         }
 
-        public int UST(string supplier)
+        public int UST(string supplier) //UST for every product
         {
             int ust = 0;
             try
@@ -481,7 +481,7 @@ namespace Lagerverwaltung
             return ust;
         }
 
-        public decimal DiscountSkonto(string supplier)
+        public decimal DiscountSkonto(string supplier) //Skonto calculation
         {
             decimal discountS = 0;
             try
@@ -508,7 +508,7 @@ namespace Lagerverwaltung
             }
             return discountS;
         }
-        public decimal DiscountRabatt(string supplier)
+        public decimal DiscountRabatt(string supplier) //adding discount
         {
             decimal discountR = 0;
             try
@@ -535,7 +535,7 @@ namespace Lagerverwaltung
             }
             return discountR;
         }
-        public decimal OnePrice(string supplier)
+        public decimal OnePrice(string supplier) //Price for single unit
         {
             decimal price = 0;
             try
@@ -568,7 +568,7 @@ namespace Lagerverwaltung
         #endregion
 
         #region AddNewProducts
-        public void NewProducts(string productName, string productInfo, int productID)
+        public void NewProducts(string productName, string productInfo, int productID) //Add new product
         {
             try
             {
@@ -590,7 +590,7 @@ namespace Lagerverwaltung
         #endregion
 
         #region LookIfProductsExist
-        public List<int> LookForProducts()
+        public List<int> LookForProducts() //Looking up all products
         {
             List<int> productID = new List<int>();
             try
@@ -625,7 +625,7 @@ namespace Lagerverwaltung
         #endregion
 
         #region ChoosenProduct
-        public int ChoosenProduct(string selected)
+        public int ChoosenProduct(string selected) //Selected product
         {
             int productID = 0;
             try
@@ -654,7 +654,7 @@ namespace Lagerverwaltung
         #endregion
 
         #region ComboBoxSupplier
-        public void ComboBoxSupplier(string product, ComboBox existingSupplier)
+        public void ComboBoxSupplier(string product, ComboBox existingSupplier) //Show all suplliers in a combobox
         {
             existingSupplier.Items.Clear();
             int productID = 1;
@@ -709,7 +709,7 @@ namespace Lagerverwaltung
         #endregion
 
         #region AddSuppliers
-        public void AddSuppliers(string supplierName, decimal discountS, decimal discountR, string info, decimal price, int ust, int productID)
+        public void AddSuppliers(string supplierName, decimal discountS, decimal discountR, string info, decimal price, int ust, int productID) //Add a new supplier
         {
             try
             {
@@ -749,7 +749,7 @@ namespace Lagerverwaltung
         #endregion
 
         #region InsertBuyers
-        public void InsertBuyers(string name, decimal onePrice, decimal discountS, decimal discountR, string info, decimal fullPrice, int amount)
+        public void InsertBuyers(string name, decimal onePrice, decimal discountS, decimal discountR, string info, decimal fullPrice, int amount) //Add new Buyer
         {
             try
             {
@@ -769,7 +769,7 @@ namespace Lagerverwaltung
         #endregion
 
         #region productSell
-        public decimal productSell(string selected)
+        public decimal productSell(string selected) //Selling products
         {
 
 
@@ -816,7 +816,7 @@ namespace Lagerverwaltung
         #endregion
 
         #region LookForQuantity
-        public int LookForQuantity()
+        public int LookForQuantity() //Check Quantitys
         {
             int stock = 0;
             try
@@ -844,7 +844,7 @@ namespace Lagerverwaltung
         #endregion
 
         #region BoughtProduct
-        public void UpdateProductQuantity(int quantity, string productName, int option)
+        public void UpdateProductQuantity(int quantity, string productName, int option) //Update after buying a product
         {
             try
             {
@@ -872,7 +872,7 @@ namespace Lagerverwaltung
         #endregion
 
         #region GetSaltForUser
-        public string GetSaltForUser(string username)
+        public string GetSaltForUser(string username) //Get salt to from bcrypt
         {
             string salt = null;
 
@@ -910,7 +910,7 @@ namespace Lagerverwaltung
 
 
         #region SaveSaltForUser
-        public void SaveSaltForUser(string username, string salt)
+        public void SaveSaltForUser(string username, string salt) //Saving salted input
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -934,12 +934,78 @@ namespace Lagerverwaltung
                 }
                
             }
+
         }
         #endregion
+        #region revenue
+        public decimal GetTotalRevenue() // get total revenue from selling products
+        {
+            decimal totalRevenue = 2000;
+
+            try
+            {
+                con.Open();
 
 
+                cmd.CommandText = "SELECT SUM([totalPrice]) FROM buyers";
+                object carsRevenue = cmd.ExecuteScalar();
+                if (carsRevenue != DBNull.Value)
+                {
+                    totalRevenue += Convert.ToDecimal(carsRevenue);
+                }
+
+
+
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                if (con.State != ConnectionState.Closed)
+                    con.Close();
+            }
+
+            return totalRevenue;
+        }
+        #endregion 
+        #region Expenses
+        public decimal GetTotalExpenses() //Get total Expenses from buying products
+        {
+            decimal totalExpenses = 0;
+
+            try
+            {
+                con.Open();
+
+                cmd.CommandText = "SELECT SUM([price]) FROM suppliers";
+                object employeesExpenses = cmd.ExecuteScalar();
+                if (employeesExpenses != DBNull.Value)
+                {
+                    totalExpenses += Convert.ToDecimal(employeesExpenses);
+                }
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                if (con.State != ConnectionState.Closed)
+                    con.Close();
+            }
+
+            return totalExpenses;
+        }
     }
+    #endregion
+   
+
+
+
+
+
 }
+
 
   
 

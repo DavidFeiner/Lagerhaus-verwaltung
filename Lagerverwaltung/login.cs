@@ -42,12 +42,14 @@ namespace Lagerverwaltung
             this.Top = (screen_height - this.Height) / 2;
         }
 
+
         private void bttn_admin_Click(object sender, EventArgs e)
         {
             sql.LookForAdmin();
         }
 
         private void bttn_accept_Click(object sender, EventArgs e)
+
         {
             //check if login was successful
             username = Convert.ToString(txtB_username.Text);
@@ -64,15 +66,7 @@ namespace Lagerverwaltung
             }
             else
             {
-                //MessageBox.Show("Username or Password are false!");
-                //txtB_username.Clear();
-                //txtB_password.Clear();
-                //txtB_username.Focus();
-                //mainmenu mainmenu = new mainmenu();
-                //this.Hide();
-                //mainmenu.ShowDialog();
 
-                MessageBox.Show("Something went wrong. Username or Password are wrong.");
                 txtB_username.Clear();
                 txtB_password.Clear();
                 txtB_username.Focus();

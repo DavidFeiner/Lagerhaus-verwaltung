@@ -40,32 +40,7 @@ namespace Lagerverwaltung
         {
             cmc.Load(table);
         }
-        //public void cbB_product_Load(object sender, EventArgs e )
-        //{
-
-        //    cn = new SqlConnection("server = (localdb)\\MSSQLLocalDB; integrated security = true; server = MayrhoferFeiner;");
-        //    cn.Open();
-
-        //    BindData();
-        //}
-        //public void BindData()
-        //{
-        //    cmd = new SqlCommand("select product from products", cn);
-        //    dr = cmd.ExecuteReader();
-        //    while (dr.Read())
-        //    {
-        //        cbB_product.Items.Add(dr[0].ToString());
-        //    }
-        //    dr.Close();
-        //}
-
-        //private void cbB_product_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    cn = new SqlConnection("server = (localdb)\\MSSQLLocalDB; integrated security = true; server = MayrhoferFeiner;");
-        //    cn.Open();
-
-        //    BindData();
-        //}
+        
     }
        
            

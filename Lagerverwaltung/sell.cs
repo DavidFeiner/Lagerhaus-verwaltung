@@ -23,8 +23,7 @@ namespace Lagerverwaltung
             txtB_ust.Text = 20 + "%";
             string product = cB_product.SelectedItem.ToString();
             decimal onePrice = sql.productSell(product);
-            //this.onePrice = (onePrice * 120) / 100;
-            //txtB_onePrice.Text = this.onePrice.ToString();
+           
             txtB_onePrice.Text = onePrice.ToString();
             this.onePrice= onePrice;
 
@@ -40,7 +39,7 @@ namespace Lagerverwaltung
                 name = Convert.ToString(txtB_buyer.Text);
                 discountS = Convert.ToDecimal(txtB_discountS.Text);
                 discountR = Convert.ToDecimal(txtB_discountR.Text);
-                //totalPrice = Convert.ToDecimal(txtB_allCost.Text);
+                
                 info = Convert.ToString(txtB_infos.Text);
                 amount = Convert.ToInt32(txtB_amount.Text);
             

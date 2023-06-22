@@ -43,7 +43,7 @@ namespace Lagerverwaltung
             mainmenu.ShowDialog();
         }
 
-        private void bttn_save_Click(object sender, EventArgs e)
+        private void bttn_save_Click(object sender, EventArgs e) //Get inputs
         {
             //create new Employess
             name = Convert.ToString(txtB_name.Text);
@@ -54,7 +54,7 @@ namespace Lagerverwaltung
             
 
 
-            if(password.Equals(password2))
+            if(password.Equals(password2)) //Make password for employees
             {
                 sql.AddEmployee(name, surname, username, password);
                 MessageBox.Show("Mitarbeiter wurde gespeichert!");
