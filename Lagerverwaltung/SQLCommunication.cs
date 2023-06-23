@@ -26,7 +26,7 @@ namespace Lagerverwaltung
         #region CreateDatabase
         public void CreateDatabase()
         {
-            string nameDB = "MayrhoferFeinerr";
+            string nameDB = "MayrhoferFeiner";
 
             //check if Database exists and if not create database and table 
             bool databaseExists = CheckDatabaseExists(connectionString, nameDB);
@@ -49,7 +49,8 @@ namespace Lagerverwaltung
                     cmd.ExecuteNonQuery();
                     cmd.CommandText = "create Table buyers([name] nvarchar(50), [onePrice] decimal, [discountS] decimal, [discountR] decimal, [info] nvarchar(50), [fullPrice] decimal, [ust] integer, [amount] integer);";
                     cmd.ExecuteNonQuery();
-
+                    //cmd.CommandText = "insert into login (userNum, name,surname, username, password) values (1, 'angie', 'mayr', 'admin', 'admin');";
+                    //cmd.ExecuteNonQuery();
                    
                     con.Close();
 
@@ -151,40 +152,67 @@ namespace Lagerverwaltung
 
                 SqlDataReader read = cmd.ExecuteReader();
                 read.Read();
-                while(read.Read())
+                MessageBox.Show("hidhfdjfkd");
+                if(read.Read())
                 {
-                    if (read.HasRows)
+                    while(read.HasRows)
                     {
                         MessageBox.Show("Username already exists. Please enter a new one.");
                         read.Close();
                         con.Close();
-
-                    }
-                    else
-                    {
-                        read.Close();
-
-                        cmd.CommandText = "select max(userNum) from login;";
-                        SqlDataReader reade= cmd.ExecuteReader();
-                        reade.Read();
-                        if (reade.HasRows)
-                        {
-                            userNum = reade.GetInt32(0) + 1;
-                        }
-                        reade.Close();
-
-                        cmd.CommandText = "insert into login (userNum, name, surname, username, password) values (" + userNum + ",'" + name + "', '" + surname + "', '" + username + "', '" + hashedPassword + "');";
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("User was successfully created!");
                     }
                 }
+                else
+                {
+
+                    read.Close();
+
+                    cmd.CommandText = "select max(userNum) from login;";
+                    SqlDataReader reade = cmd.ExecuteReader();
+                    reade.Read();
+                    if (reade.HasRows)
+                    {
+                        userNum = reade.GetInt32(0) + 1;
+                    }
+                    reade.Close();
+
+                    cmd.CommandText = "insert into login (userNum, name, surname, username, password) values (" + userNum + ",'" + name + "', '" + surname + "', '" + username + "', '" + hashedPassword + "');";
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("User was successfully created!");
+                }
+                    //if (read.HasRows)
+                    //{
+                    //    MessageBox.Show("Username already exists. Please enter a new one.");
+                    //    read.Close();
+                    //    con.Close();
+
+                    //}
+                    //else
+                    //{
+                    //    read.Close();
+
+                    //    cmd.CommandText = "select max(userNum) from login;";
+                    //    SqlDataReader reade= cmd.ExecuteReader();
+                    //    reade.Read();
+                    //    if (reade.HasRows)
+                    //    {
+                    //        userNum = reade.GetInt32(0) + 1;
+                    //    }
+                    //    reade.Close();
+
+                    //    cmd.CommandText = "insert into login (userNum, name, surname, username, password) values (" + userNum + ",'" + name + "', '" + surname + "', '" + username + "', '" + hashedPassword + "');";
+                    //    cmd.ExecuteNonQuery();
+                    //    MessageBox.Show("User was successfully created!");
+                    //}
+                
                 
                 con.Close();
                
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                
+                MessageBox.Show(ex.ToString() );
                 if (con.State != ConnectionState.Closed)
                 {
                     con.Close();
@@ -242,7 +270,7 @@ namespace Lagerverwaltung
                 
                 if(reader.HasRows)
                 {
-                    MessageBox.Show("halooo");
+                    MessageBox.Show("Ein Admin Benutzer ist schon vorhanden.");
                     reader.Close();
                     return;
 

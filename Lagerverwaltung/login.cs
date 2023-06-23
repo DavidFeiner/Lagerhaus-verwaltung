@@ -20,9 +20,7 @@ namespace Lagerverwaltung
         {
             InitializeComponent();
             sql.CreateDatabase();
-            
-            
-           
+  
         }
 
        
@@ -66,7 +64,7 @@ namespace Lagerverwaltung
             }
             else
             {
-
+                MessageBox.Show("Benutzername oder Passwort ist falsch.");
                 txtB_username.Clear();
                 txtB_password.Clear();
                 txtB_username.Focus();
